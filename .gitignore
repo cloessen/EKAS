@@ -7,6 +7,11 @@
 
 # dependencies
 /node_modules
+/ekasApp/node_modules
+/functions/node_modules
+
+#environmets
+/environments
 
 # IDEs and editors
 /.idea

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#toggle script
+
+doCurl(){
+	read rfid
+	curl -X POST -H "Content-Type:application/json" https://us-central1-anwesenheit-ff.cloudfunctions.net/toggle?rfid=${rfid} -d "{}"
+	echo -e "\n"
+	doCurl
+}
+
+doCurl
