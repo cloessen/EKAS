@@ -1,6 +1,6 @@
-<div id="accordion" role="tablist">
-  <!--SECTION 1 ADD PERSONAL-->
-  <div class="card">
+<!-- <div id="accordion" role="tablist"> -->
+  <!-- SECTION 1 ADD PERSONAL-->
+  <!-- <div class="card">
     <div class="card-header" style="cursor: pointer" role="tab" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
       <span class="h5">
         Kameraden hinzufügen
@@ -12,54 +12,58 @@
         <app-new-kamerad-form></app-new-kamerad-form>
       </div>
     </div>
-  </div>
-  <!--/ SECTION 1 ADD PERSONAL-->
+  </div> -->
+  <!--/ SECTION 1 ADD PERSONAL -->
 
   <!--SECTION 2 LIST ALL-->
   <div class="card">
-    <div class="card-header" style="cursor: pointer" role="tab" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+    <div class="card-header">
       <span class="h5">
-        Alle Kameraden ansehen / bearbeiten
+        Details ansehen / bearbeiten
       </span>
     </div>
-    <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-2">
-            <input
-              class="form-control"
-              type='text'
-              placeholder='Nachname'
-              (keyup)='updateFilter($event)'
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4">
-            <ngx-datatable
-              class="bootstrap"
-              [rows]="rows"
-              [columns]="columns"
-              [columnMode]="'force'"
-              [headerHeight]="50"
-              [footerHeight]="50"
-              [limit]="5"
-              [selected]="selected"
-              [selectionType]="'single'"
-              [rowHeight]="'auto'">
-            </ngx-datatable>
-          </div>
-          <div class="col-sm-8">
-            <div *ngIf="selected.length > 0" class='selected-column'>
-             <app-kamerad-form [personal]="selected[0]" [check1]="false" [check2]="false"></app-kamerad-form>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-4">
+          <!-- <form class="form-inline"> -->
+            <div class="input-group">
+              <span class="input-group-addon">Suche:</span>
+              <input
+                id='suche'
+                class="form-control"
+                type='text'
+                placeholder='Nachname'
+                (keyup)='updateFilter($event)'
+              />
             </div>
+          <!-- </form> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <ngx-datatable
+            class="bootstrap"
+            [rows]="rows"
+            [columns]="columns"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [limit]="5"
+            [selected]="selected"
+            [selectionType]="'single'"
+            [rowHeight]="'auto'">
+          </ngx-datatable>
+        </div>
+        <div class="col-sm-8">
+          <div *ngIf="selected.length > 0" class='selected-column'>
+            <app-kamerad-form [personal]="selected[0]" [check1]="false" [check2]="false"></app-kamerad-form>
           </div>
         </div>
       </div>
     </div>
   </div>
   <!--/ SECTION 2 LIST ALL-->
-</div>
+<!-- </div> -->
 
 <!--<ngx-datatable style="cursor: pointer"-->
                <!--class="bootstrap"-->
