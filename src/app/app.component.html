@@ -8,14 +8,14 @@
 <!--<button class="btn btn-primary-outline" (click)="state == 'noError' ? state = 'error' : state = 'noError'" >toggle Error</button>-->
 
 <ng-container *ngIf="_authService.afAuth.authState | async; let user; else showLogin">
-  <div class="container" style="padding-top:1em">
-    <app-header ></app-header>
+  <div class="container">
+    <app-header></app-header>
   </div>
-  <div class="container-fluid" style="padding-top: 1em">
-    <router-outlet></router-outlet>
-  </div>   
+  <router-outlet></router-outlet>
 </ng-container>
 
 <ng-template #showLogin>
- <app-login></app-login>
+  <div class="container">
+    <app-login></app-login>
+  </div>
 </ng-template>
