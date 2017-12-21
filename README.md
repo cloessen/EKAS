@@ -6,3 +6,5 @@ Webbasierte echtzeit Kräfteüberischt für die Freiwillige Feuerwehr Altenholz
 
 **PROTOTYP STATUS**
 
+Für Fragen zum Projekt Issue eröffnen
+
