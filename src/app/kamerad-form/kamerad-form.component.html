@@ -1,34 +1,35 @@
 <!--NEW PERSONAL FORM-->
-<div class="container" *ngIf="kamerad">
+
+<ng-container *ngIf="kamerad">
   <form #form="ngForm" (ngSubmit)="onSubmit(form); form.reset()">
-    <div class="form-group row">
-      <label for="inputName" class="col-sm-2 col-form-label font-weight-bold">Nachname</label>
-      <div class="col-sm-8">
-        <input type="text" class="form-control" id="inputName" placeholder="Nachname*" [ngModel]="kamerad.lastName" name="lastName">
+    <div class="row">
+      <div class="input-field col s8">
+        <input type="text" class="validate"  id="inputName" [ngModel]="kamerad.lastName" name="lastName">
+        <label class="active" for="inputName">Nachname</label>
         <!--<small *ngIf="lastName.touched && lastName.invalid" class="text-danger">Nachname erforderlich</small>-->
       </div>
     </div>
-    <div class="form-group row">
-      <label for="inputFirstName" class="col-sm-2 col-form-label font-weight-bold">Vorname</label>
-      <div class="col-sm-8">
-        <input type="text" class="form-control" id="inputFirstName" placeholder="Vorname*" [ngModel]="kamerad.firstName" name="firstName">
+    <div class="row">
+      <div class="input-field col s8">
+        <input required type="text" class="form-control" id="inputFirstName" [ngModel]="kamerad.firstName" name="firstName">
+        <label class="active" for="inputFirstName">Vorname</label>
         <!--<small *ngIf="firstName.invalid && firstName.touched" class="text-danger">Vorname erforderlich</small>-->
       </div>
     </div>
     <div class="form-group row">
-      <label for="inputRfid" class="col-sm-2 col-form-label font-weight-bold">RFID</label>
-      <div class="col-sm-8">
+      <label for="inputRfid">RFID</label>
+      <div class="col s8">
         <input type="text" class="form-control" id="inputRfid" placeholder="RFID*" [(ngModel)]="kamerad.rfid" name="rfidRef" disabled>
         <input type="hidden" [ngModel]="kamerad.rfid" name="rfid">
-        <small class="text-secondary">RFID kann nicht geändert werden. Wenn sich die RFID geändert hat, muss der Kamerad neu eingepflegt werden!</small>
+        <small>RFID kann nicht geändert werden. Wenn sich die RFID geändert hat, muss der Kamerad neu eingepflegt werden!</small>
       </div>
     </div>
 
     <div class="form-group row" ngModelGroup="funktionen" #funktionen="ngModelGroup">
-      <div class="col-sm-6 col-lg-3 font-weight-bold">Funktionen</div>
+      <div class="col s6">Funktionen</div>
       <div class="col">
-        <div class="row no-gutters">
-          <div class="col-sm-4">
+        <div class="row ">
+          <div class="col s4">
             <div class="form-check">
               <label class="form-check-label">
                 <input class="form-check-input" [ngModel]="kamerad.funktionen.PA" name="PA" type="checkbox"> Atemschutz <i class="fa fa-tachometer fa-lg"></i>
@@ -63,7 +64,7 @@
               </label>
             </div>
             <div class="form-check">
-              <label class="form-check-label">
+              <label class="form-check-labAlvinel">
                 <input class="form-check-input" [ngModel]="kamerad.funktionen.NS" name="NS" type="checkbox"> Notstrom-Gruppe <i class="fa fa-plug fa-lg"></i>
               </label>
             </div>
@@ -73,38 +74,27 @@
               </label>
             </div>
           </div>
-          <div class="col-sm-4">
-            <div class="form-check">
+          <div class="col s4">
               <label class="form-check-label">
                 <input class="form-check-input text-light" [ngModel]="kamerad.funktionen.GF" name="GF" type="checkbox"><span class="bg-primary text-white">Gruppenführung</span>
               </label>
-            </div>
-            <div class="form-check">
+            
               <label class="form-check-label">
                 <input class="form-check-input" [ngModel]="kamerad.funktionen.ZF" name="ZF" type="checkbox"><span class="bg-danger text-white">Zugführung</span>
               </label>
-            </div>
-            <div class="form-check">
+            
               <label class="form-check-label">
                 <input class="form-check-input" [ngModel]="kamerad.funktionen.owf" name="owf" type="checkbox"><span class="bg-warning">Ortswehrführung</span>
               </label>
-            </div>
-            <div class="form-check">
+            
               <label class="form-check-label">
-                <input class="form-check-input" [ngModel]="kamerad.funktionen.gwf" name="gwf" type="checkbox"><span class="bg-warning">Gemeindewehrfürung</span>
-              </label>
-            </div>
+                  <input class="form-check-input" [ngModel]="kamerad.funktionen.gwf" name="gwf" type="checkbox"><span class="bg-warning">Gemeindewehrführung</span>
+              </label>                    
           </div>
           <!--</div>-->
         </div>
 
       </div>
-
-
-
-
-
-
     </div>
     <div class="form-group row">
       <div class="col-sm-2">
@@ -134,5 +124,5 @@
       </div>
     </div>
   </form>
-</div>
+</ng-container>
 <!--/NEW PERSONAL FORM-->

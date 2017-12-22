@@ -29,7 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PersonalComponent,
     KameradFormComponent,
     NewKameradFormComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     // BrowserModule,

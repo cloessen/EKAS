@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,7 +21,7 @@ import { FormsModule } from '@angular/forms';
   exports: [
     JaneinPipe,
     AlertTopComponent,
-    LoginComponent
+    LoginComponent,
   ],
   providers: []
 })
