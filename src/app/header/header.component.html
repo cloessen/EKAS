@@ -1,5 +1,6 @@
-<button routerLink="/" class="btn">Übersicht</button>
-<button routerLink="/editPersonal" class="btn">Details bearbeiten</button>
-<button routerLink="/newPersonal" class="btn ">Kamerad*in hinzufügen</button>
+<button mat-raised-button color="accent" routerLink="/">Übersicht</button>
+<button mat-raised-button color="accent" routerLink="/editPersonal">Details bearbeiten</button>
+<button mat-raised-button color="accent" routerLink="/newPersonal">Kamerad*in hinzufügen</button>
 
-<button class="btn red" (click)="onSubmitLogout()">Abmelden</button>
+<button mat-raised-button color="warn" (click)="onSubmitLogout()">Abmelden</button>
+

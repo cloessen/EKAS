@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
-// import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { OverviewComponent } from './overview/overview.component';
 import { AngularFireModule } from 'angularfire2';
@@ -20,6 +17,7 @@ import { NewKameradFormComponent } from './new-kamerad-form/new-kamerad-form.com
 import { KameradFormComponent } from './kamerad-form/kamerad-form.component';
 import { PersonalComponent } from './personal/personal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './shared/material/material.module';
 
 
 @NgModule({
@@ -32,7 +30,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
   ],
   imports: [
-    // BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
@@ -41,7 +38,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgxDatatableModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MaterialModule
   ],
   providers: [FirestoreService, AuthService],
   bootstrap: [AppComponent]

@@ -1,9 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
-@import '/styles/materialize/sass/materialize.scss';
+//@import '/styles/materialize/sass/materialize.scss';
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+//@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+//@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+//@import "~@angular/material/prebuilt-themes/purple-green.css";
+
+
 @import '~@swimlane/ngx-datatable/release/index.css';
 // @import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+//displayCenter
+.float-center {
+  width: 33%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .float-center {
+    max-width: 440px;
+  }
+}
+
+@media (min-width: 768px) {
+  .float-center {
+    max-width: 620px;
+  }
+}
+
+@media (min-width: 992px) {
+  .float-center {
+    max-width: 660px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .float-center {
+    max-width: 840px;
+  }
+}
+
+
+
+
 
 
 app-alert-top{
@@ -13,14 +88,14 @@ app-alert-top{
     width: auto;
     //text-align: center;
   }
-  
+
   //Loading Spinner
   .sk-fading-circle {
     margin: 250px auto;
     width: 125px;
     height: 125px;
     //position: relative;
-  
+
     position: fixed;
     z-index: 999;
     //height: 2em;
@@ -31,11 +106,11 @@ app-alert-top{
     left: 0;
     bottom: 0;
     right: 0;
-  
-  
-  
+
+
+
   }
-  
+
   .sk-fading-circle .sk-circle {
     width: 100%;
     height: 100%;
@@ -43,7 +118,7 @@ app-alert-top{
     left: 0;
     top: 0;
   }
-  
+
   .sk-fading-circle .sk-circle:before {
     content: '';
     display: block;
@@ -154,14 +229,13 @@ app-alert-top{
     -webkit-animation-delay: -0.1s;
     animation-delay: -0.1s;
   }
-  
+
   @-webkit-keyframes sk-circleFadeDelay {
     0%, 39%, 100% { opacity: 0; }
     40% { opacity: 1; }
   }
-  
+
   @keyframes sk-circleFadeDelay {
     0%, 39%, 100% { opacity: 0; }
     40% { opacity: 1; }
   }
-  

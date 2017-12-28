@@ -6,12 +6,14 @@ import { AlertTopComponent } from './components/alert-top/alert-top.component';
 import { AuthService } from './auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
+import {MaterialModule} from './material/material.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ],
   declarations: [
     JaneinPipe,
