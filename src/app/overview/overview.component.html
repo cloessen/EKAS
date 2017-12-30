@@ -1,159 +1,112 @@
-
-<div *ngIf="finishedLoading && overview.sum >0 ; else screensaver">
-  <!--<div class="container" style="padding-top:1em">-->
-    <!--<app-header ></app-header>-->
-  <!--</div>-->
-
-
-  <div class="row no-gutters">
-    <div class="col s2 border-0 "><span class="h1 font-weight-bold"><i class="fa fa-users fa-2x" aria-hidden="true">: {{overview.sum}}</i></span></div>
-      <div class="col s10 border-0 rounded">
-        <div class="d-flex justify-content-between">
-          <span class="h1 font-weight-bold" >
-            <i class="fa fa-tachometer fa-2x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.PA == 0 }">{{ overview.PA}}</span></i>
-          </span>
-            <span class="h1 font-weight-bold">
-              <i class="fa fa-truck fa-2x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.CE == 0 }">{{ overview.CE}}</span> </i>
-          </span>
-            <span class="h1 font-weight-bold">
-              <i class="fa fa-universal-access fa-2x" aria-hidden="true"> <span  [ngClass]="{'text-danger': overview.gsg == 0 }">{{ overview.gsg}}</span> </i>
-          </span>
-            <span class="h1 font-weight-bold">
-              <i class="fa fa-tree fa-2x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.saw == 0 }">{{ overview.saw}}</span> </i>
-          </span>
-            <span class="h1 font-weight-bold">
-              <i class="fa fa-laptop fa-2x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.eva == 0 }">{{ overview.eva}}</span> </i>
-          </span>
-            <span class="h1 font-weight-bold">
-              <i class="fa fa-clipboard fa-2x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.log == 0 }">{{ overview.log}}</span> </i>
-          </span>
-            <span class="h1 font-weight-bold">
-              <i class="fa fa-plug fa-2x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.NS == 0 }">{{ overview.NS}}</span> </i>
-          </span>
-            <span class="h1 font-weight-bold">
-              <i class="fa fa-stethoscope fa-2x" aria-hidden="true"><span [ngClass]="{'text-danger': overview.RS == 0 }">{{ overview.RS}}</span> </i>
-          </span>
-        </div>
-      </div>
-  </div>
-   <!-- FÜHRUNGSKRÄFTE GWF / OWF / ZF-->
-  <mat-grid-list cols="8" rowHeight="2:1">
-    <mat-grid-tile *ngFor="let kamerad of gwf">
-      <!--<mat-card>-->
+<div *ngIf="finishedLoading && overview.sum >0">
+  <mat-toolbar style=" justify-content: space-between;">
+    <i class="fa fa-users fa-4x" aria-hidden="true">: {{overview.sum}}</i>
+    <!-- This fills the remaining space of the current row -->
+    <!--<span class="example-fill-remaining-space"></span>-->
+    <i class="fa fa-tachometer fa-4x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.PA == 0 }">{{ overview.PA}} </span></i>
+    <i class="fa fa-truck fa-4x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.CE == 0 }">{{ overview.CE}} </span></i>
+    <i class="fa fa-universal-access fa-4x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.gsg == 0 }">{{ overview.gsg}} </span></i>
+    <i class="fa fa-tree fa-4x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.saw == 0 }">{{ overview.saw}} </span></i>
+    <i class="fa fa-laptop fa-4x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.eva == 0 }">{{ overview.eva}} </span></i>
+    <i class="fa fa-clipboard fa-4x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.log == 0 }">{{ overview.log}} </span></i>
+    <i class="fa fa-plug fa-4x" aria-hidden="true"> <span [ngClass]="{'text-danger': overview.NS == 0 }">{{ overview.NS}} </span></i>
+    <i class="fa fa-medkit fa-4x" aria-hidden="true"><span [ngClass]="{'text-danger': overview.RS == 0 }">{{ overview.RS}} </span></i>
+  </mat-toolbar>
+  <hr>
+     <!-- FÜHRUNGSKRÄFTE GWF / OWF / ZF-->
+  <mat-grid-list cols="6" rowHeight="3:1" *ngIf="(gwf.length > 0 || owf.length > 0 || zf.length > 0)">
+    <mat-grid-tile *ngFor="let kamerad of gwf" class="mat-elevation-z4">
+      <mat-card>
         <!--<mat-card-header>-->
-          <!--<mat-card-title>-->
-      <mat-toolbar>
-        {{kamerad.lastName}}, {{kamerad.firstName}}
-      </mat-toolbar>
-      <div>
-        test
-      </div>
-          <!--</mat-card-title>-->
+          <mat-card-title>
+            <!--<h4>-->
+              <strong>{{kamerad.lastName}}</strong>, <small>{{kamerad.firstName}}({{kamerad.rfid}})</small>
+            <!--</h4>-->
+          </mat-card-title>
         <!--</mat-card-header>-->
-        <!--<mat-card-content>-->
+        <mat-card-content>
+         <i class="fa fa-tachometer fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>
+         <i class="fa fa-truck fa-2x" [ngStyle]="{'color' : kamerad.funktionen.CE ? 'green' : 'grey'}"></i>
+         <i class="fa fa-universal-access fa-2x" [ngStyle]="{'color' : kamerad.funktionen.gsg ? 'green' : 'grey'}"></i>
+         <i class="fa fa-tree fa-2x" [ngStyle]="{'color' : kamerad.funktionen.saw ? 'green' : 'grey'}"></i>
+         <i class="fa fa-laptop fa-2x" [ngStyle]="{'color' : kamerad.funktionen.eva ? 'green' : 'grey'}"></i>
+         <i class="fa fa-clipboard fa-2x" [ngStyle]="{'color' : kamerad.funktionen.log ? 'green' : 'grey'}"></i>
+         <i class="fa fa-plug fa-2x" [ngStyle]="{'color' : kamerad.funktionen.NS ? 'green' : 'grey'}"></i>
+         <i class="fa fa-medkit fa-2x" [ngStyle]="{'color' : kamerad.funktionen.RS ? 'green' : 'grey'}"></i>
 
-        <!--</mat-card-content>-->
-      <!--</mat-card>-->
+
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let kamerad of owf" class="mat-elevation-z4">
+      <mat-card>
+        <!--<mat-card-header>-->
+          <mat-card-title>
+            <!--<h4>-->
+              <strong>{{kamerad.lastName}}</strong>, <small>{{kamerad.firstName}}({{kamerad.rfid}})</small>
+            <!--</h4>-->
+          </mat-card-title>
+        <!--</mat-card-header>-->
+        <mat-card-content>
+         <i class="fa fa-tachometer fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>
+         <i class="fa fa-truck fa-2x" [ngStyle]="{'color' : kamerad.funktionen.CE ? 'green' : 'grey'}"></i>
+         <i class="fa fa-universal-access fa-2x" [ngStyle]="{'color' : kamerad.funktionen.gsg ? 'green' : 'grey'}"></i>
+         <i class="fa fa-tree fa-2x" [ngStyle]="{'color' : kamerad.funktionen.saw ? 'green' : 'grey'}"></i>
+         <i class="fa fa-laptop fa-2x" [ngStyle]="{'color' : kamerad.funktionen.eva ? 'green' : 'grey'}"></i>
+         <i class="fa fa-clipboard fa-2x" [ngStyle]="{'color' : kamerad.funktionen.log ? 'green' : 'grey'}"></i>
+         <i class="fa fa-plug fa-2x" [ngStyle]="{'color' : kamerad.funktionen.NS ? 'green' : 'grey'}"></i>
+         <i class="fa fa-medkit fa-2x" [ngStyle]="{'color' : kamerad.funktionen.RS ? 'green' : 'grey'}"></i>
+
+
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let kamerad of zf" class="mat-elevation-z4">
+      <mat-card>
+        <!--<mat-card-header>-->
+          <mat-card-title>
+            <!--<h4>-->
+              <strong>{{kamerad.lastName}}</strong>, <small>{{kamerad.firstName}}({{kamerad.rfid}})</small>
+            <!--</h4>-->
+          </mat-card-title>
+        <!--</mat-card-header>-->
+        <mat-card-content>
+         <i class="fa fa-tachometer fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>
+         <i class="fa fa-truck fa-2x" [ngStyle]="{'color' : kamerad.funktionen.CE ? 'green' : 'grey'}"></i>
+         <i class="fa fa-universal-access fa-2x" [ngStyle]="{'color' : kamerad.funktionen.gsg ? 'green' : 'grey'}"></i>
+         <i class="fa fa-tree fa-2x" [ngStyle]="{'color' : kamerad.funktionen.saw ? 'green' : 'grey'}"></i>
+         <i class="fa fa-laptop fa-2x" [ngStyle]="{'color' : kamerad.funktionen.eva ? 'green' : 'grey'}"></i>
+         <i class="fa fa-clipboard fa-2x" [ngStyle]="{'color' : kamerad.funktionen.log ? 'green' : 'grey'}"></i>
+         <i class="fa fa-plug fa-2x" [ngStyle]="{'color' : kamerad.funktionen.NS ? 'green' : 'grey'}"></i>
+         <i class="fa fa-medkit fa-2x" [ngStyle]="{'color' : kamerad.funktionen.RS ? 'green' : 'grey'}"></i>
+        </mat-card-content>
+      </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
-  <div class="row no-gutters">
-    <div class="col s6 m4 lg3 xl2"  *ngFor="let kamerad of gwf">
-      <div class="card">
-        <div class="card-content yellow">
-          <span class="card-title">
-            <h4>
-              <strong>{{kamerad.lastName}}</strong>,<small>{{kamerad.firstName}}</small>
-            </h4>
-          </span>
-        </div>
-        <div class="card-body px-2 px-md-1">
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.PA, 'text-muted': !kamerad.funktionen.PA}" class="fa fa-tachometer fa-2x"  aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.CE, 'text-muted': !kamerad.funktionen.CE}" class="fa fa-truck fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.gsg, 'text-muted': !kamerad.funktionen.gsg}" class="fa fa-universal-access fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.saw, 'text-muted': !kamerad.funktionen.saw}" class="fa fa-tree fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.eva, 'text-muted': !kamerad.funktionen.eva}" class="fa fa-laptop fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.log, 'text-muted': !kamerad.funktionen.log}" class="fa fa-clipboard fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.NS, 'text-muted': !kamerad.funktionen.NS}" class="fa fa-plug fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.RS, 'text-muted': !kamerad.funktionen.RS}" class="fa fa-stethoscope fa-2x" aria-hidden="true"></i></span>
-        </div>
-      </div>
-    </div>
-    <div class="col s6 m4 lg3 xl2"  *ngFor="let kamerad of owf">
-      <div class="card my-0">
-        <div class="card-header py-0 bg-warning">
-          <h3>
-            <strong>{{kamerad.lastName}}</strong>,<small><p class=" my-0">{{kamerad.firstName}}</p></small>
-          </h3>
-        </div>
-        <div class="card-body px-2 px-md-1">
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.PA, 'text-muted': !kamerad.funktionen.PA}" class="fa fa-tachometer fa-2x"  aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.CE, 'text-muted': !kamerad.funktionen.CE}" class="fa fa-truck fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.gsg, 'text-muted': !kamerad.funktionen.gsg}" class="fa fa-universal-access fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.saw, 'text-muted': !kamerad.funktionen.saw}" class="fa fa-tree fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.eva, 'text-muted': !kamerad.funktionen.eva}" class="fa fa-laptop fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.log, 'text-muted': !kamerad.funktionen.log}" class="fa fa-clipboard fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.NS, 'text-muted': !kamerad.funktionen.NS}" class="fa fa-plug fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.RS, 'text-muted': !kamerad.funktionen.RS}" class="fa fa-stethoscope fa-2x" aria-hidden="true"></i></span>
-        </div>
-      </div>
-    </div>
-    <div class="col s6 m4 lg3 xl2"  *ngFor="let kamerad of zf">
-      <div class="card my-0">
-        <div class="card-header py-0 bg-danger text-light">
-          <h3>
-            <strong>{{kamerad.lastName}}</strong>,<small><p class=" my-0">{{kamerad.firstName}}</p></small>
-          </h3>
-        </div>
-        <div class="card-body px-2 px-md-1">
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.PA, 'text-muted': !kamerad.funktionen.PA}" class="fa fa-tachometer fa-2x"  aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.CE, 'text-muted': !kamerad.funktionen.CE}" class="fa fa-truck fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.gsg, 'text-muted': !kamerad.funktionen.gsg}" class="fa fa-universal-access fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.saw, 'text-muted': !kamerad.funktionen.saw}" class="fa fa-tree fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.eva, 'text-muted': !kamerad.funktionen.eva}" class="fa fa-laptop fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.log, 'text-muted': !kamerad.funktionen.log}" class="fa fa-clipboard fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.NS, 'text-muted': !kamerad.funktionen.NS}" class="fa fa-plug fa-2x" aria-hidden="true"></i></span>
-          <span><i [ngClass]="{'text-success': kamerad.funktionen.RS, 'text-muted': !kamerad.funktionen.RS}" class="fa fa-stethoscope fa-2x" aria-hidden="true"></i></span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- /FÜHRUNGSKRÄFTE GWF / OWF / ZF-->
-  <!-- Alle Kameraden inkl. GF-->
-  <div class="row no-gutters">
-    <div class="col s6 m4 lg3 xl2"  *ngFor="let kamerad of kameraden">
-      <div class="card my-0">
-        <div class="card-header py-0" [ngClass]="{'bg-primary' : kamerad.funktionen.GF, 'bg-danger' : kamerad.funktionen.ZF, 'text-white': kamerad.funktionen.GF || kamerad.funktionen.ZF}">
-          <h3>
-            <strong>{{kamerad.lastName}}</strong>,<small><p class=" my-0">{{kamerad.firstName}}</p></small>
-          </h3>
-        </div>
-        <div class="card-body px-2 px-md-1">
-            <span><i [ngClass]="{'text-success': kamerad.funktionen.PA, 'text-muted': !kamerad.funktionen.PA}" class="fa fa-tachometer fa-2x"  aria-hidden="true"></i></span>
-            <span><i [ngClass]="{'text-success': kamerad.funktionen.CE, 'text-muted': !kamerad.funktionen.CE}" class="fa fa-truck fa-2x" aria-hidden="true"></i></span>
-            <span><i [ngClass]="{'text-success': kamerad.funktionen.gsg, 'text-muted': !kamerad.funktionen.gsg}" class="fa fa-universal-access fa-2x" aria-hidden="true"></i></span>
-            <span><i [ngClass]="{'text-success': kamerad.funktionen.saw, 'text-muted': !kamerad.funktionen.saw}" class="fa fa-tree fa-2x" aria-hidden="true"></i></span>
-            <span><i [ngClass]="{'text-success': kamerad.funktionen.eva, 'text-muted': !kamerad.funktionen.eva}" class="fa fa-laptop fa-2x" aria-hidden="true"></i></span>
-            <span><i [ngClass]="{'text-success': kamerad.funktionen.log, 'text-muted': !kamerad.funktionen.log}" class="fa fa-clipboard fa-2x" aria-hidden="true"></i></span>
-            <span><i [ngClass]="{'text-success': kamerad.funktionen.NS, 'text-muted': !kamerad.funktionen.NS}" class="fa fa-plug fa-2x" aria-hidden="true"></i></span>
-            <span><i [ngClass]="{'text-success': kamerad.funktionen.RS, 'text-muted': !kamerad.funktionen.RS}" class="fa fa-stethoscope fa-2x" aria-hidden="true"></i></span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- /Alle Kameraden inkl. GF-->
-
+  <hr>
+    <!--ALLE KAMERADEN AUSSER GWF / OWF / ZF-->
+  <mat-grid-list cols="6" rowHeight="3:1">
+    <mat-grid-tile *ngFor="let kamerad of kameraden" class="mat-elevation-z4">
+      <mat-card>
+        <!--<mat-card-header>-->
+        <mat-card-title>
+          <!--<h4>-->
+          <strong>{{kamerad.lastName}}</strong>, <small>{{kamerad.firstName}}({{kamerad.rfid}})</small>
+          <!--</h4>-->
+        </mat-card-title>
+        <!--</mat-card-header>-->
+        <mat-card-content>
+          <i class="fa fa-tachometer fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>
+          <i class="fa fa-truck fa-2x" [ngStyle]="{'color' : kamerad.funktionen.CE ? 'green' : 'grey'}"></i>
+          <i class="fa fa-universal-access fa-2x" [ngStyle]="{'color' : kamerad.funktionen.gsg ? 'green' : 'grey'}"></i>
+          <i class="fa fa-tree fa-2x" [ngStyle]="{'color' : kamerad.funktionen.saw ? 'green' : 'grey'}"></i>
+          <i class="fa fa-laptop fa-2x" [ngStyle]="{'color' : kamerad.funktionen.eva ? 'green' : 'grey'}"></i>
+          <i class="fa fa-clipboard fa-2x" [ngStyle]="{'color' : kamerad.funktionen.log ? 'green' : 'grey'}"></i>
+          <i class="fa fa-plug fa-2x" [ngStyle]="{'color' : kamerad.funktionen.NS ? 'green' : 'grey'}"></i>
+          <i class="fa fa-medkit fa-2x" [ngStyle]="{'color' : kamerad.funktionen.RS ? 'green' : 'grey'}"></i>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <!--/ GRID LIST-->
+  </mat-grid-list>
 </div>
-
-
-
-<ng-template #screensaver>
-  <!--<div class="screensaver">-->
-    <!--<div class="text-center">-->
-      <!--Niemand da!-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div class="screensaver">-->
-  <!--</div>-->
-
-</ng-template>
-
