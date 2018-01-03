@@ -1,26 +1,26 @@
-export interface Kamerad{
-  lastName      : string,
-  firstName     : string,
-  anwesend      : boolean,
-  rfid          : string,
-  id?           : string,
-  funktionen    : {
-    GF  : boolean,
-    ZF  : boolean,
-    CE  : boolean,
-    PA  : boolean,
-    saw : boolean,
-    gsg : boolean,
-    eva : boolean,
-    log : boolean,
-    RS  : boolean,
-    NS  : boolean,
-    owf : boolean,
-    gwf : boolean
-  }
+export interface Kamerad {
+  lastName: string;
+  firstName: string;
+  anwesend: boolean;
+  rfid: string;
+  id?: string;
+  funktionen: {
+    GF: boolean,
+    ZF: boolean,
+    CE: boolean,
+    PA: boolean,
+    saw: boolean,
+    gsg: boolean,
+    eva: boolean,
+    log: boolean,
+    RS: boolean,
+    NS: boolean,
+    owf: boolean,
+    gwf: boolean
+  };
 }
 
-export class Overview{
+export class Overview {
   sum  = 0;
   PA   = 0;
   CE   = 0;

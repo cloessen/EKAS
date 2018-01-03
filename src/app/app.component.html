@@ -7,10 +7,11 @@
 </div>
 <!--<button class="btn btn-primary-outline" (click)="state == 'noError' ? state = 'error' : state = 'noError'" >toggle Error</button>-->
 
-<ng-container *ngIf="_authService.afAuth.authState | async; let user; else showLogin">
-  <div class="container">
+<ng-container *ngIf="_authService.afAuth.authState | async; else showLogin">
+  <!--<div class="container">-->
+  <mat-toolbar style="justify-content: center;">
     <app-header></app-header>
-  </div>
+  </mat-toolbar>
   <router-outlet></router-outlet>
 </ng-container>
 

@@ -13,10 +13,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public kameradenSubscription: Subscription;
   public finishedLoading = false;
   public overview: Overview;
-  public kameraden : Kamerad[];
-  public zf:Kamerad[];
-  public owf:Kamerad[];
-  public gwf:Kamerad[];
+  public kameraden: Kamerad[];
+  public zf: Kamerad[];
+  public owf: Kamerad[];
+  public gwf: Kamerad[];
 
   constructor(private afs: FirestoreService) { }
 
@@ -28,37 +28,37 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.overview.sum = data.length;
     data.forEach((kamerad: Kamerad) => {
       const obj = kamerad.funktionen;
-      for (let funktion in obj) {
+      for (const funktion in obj) {
         if (obj[funktion]) {
           this.overview[funktion]++;
         }
       }
-      if(kamerad.funktionen.owf) {
+      if (kamerad.funktionen.owf) {
         // let index = data.indexOf(kamerad);
         this.owf.push(kamerad);
       }
-      if(kamerad.funktionen.gwf) {
+      if (kamerad.funktionen.gwf) {
         // let index = data.indexOf(kamerad);
         this.gwf.push(kamerad);
       }
-      if(kamerad.funktionen.ZF) {
+      if (kamerad.funktionen.ZF) {
         // let index = data.indexOf(kamerad);
         this.zf.push(kamerad);
       }
     });
-    //remove ZF & OWF & GWF from kameraden[]
-    this.zf.forEach((kamerad) => this.kameraden.splice(this.kameraden.indexOf(kamerad),1));
-    this.owf.forEach((kamerad) => this.kameraden.splice(this.kameraden.indexOf(kamerad),1));
-    this.gwf.forEach((kamerad) => this.kameraden.splice(this.kameraden.indexOf(kamerad),1));
+    // remove ZF & OWF & GWF from kameraden[]
+    this.zf.forEach((kamerad) => this.kameraden.splice(this.kameraden.indexOf(kamerad), 1));
+    this.owf.forEach((kamerad) => this.kameraden.splice(this.kameraden.indexOf(kamerad), 1));
+    this.gwf.forEach((kamerad) => this.kameraden.splice(this.kameraden.indexOf(kamerad), 1));
   }
-  ngOnInit(){
+  ngOnInit() {
     this.kameradenSubscription = this.afs.getKameraden().subscribe((data) => {
         this.kameraden = data;
         this.calculateFunktionen(data);
         this.finishedLoading = true;
     });
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.kameradenSubscription.unsubscribe();
   }
 }
