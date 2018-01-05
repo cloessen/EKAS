@@ -18,7 +18,7 @@ import { KameradFormComponent } from './kamerad-form/kamerad-form.component';
 import { PersonalComponent } from './personal/personal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material/material.module';
-
+import {AdminModule} from './admin/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -27,13 +27,14 @@ import { MaterialModule } from './shared/material/material.module';
     PersonalComponent,
     KameradFormComponent,
     NewKameradFormComponent,
-    HeaderComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
     FormsModule,
+    AdminModule,
     ReactiveFormsModule,
     NgxDatatableModule,
     AngularFireModule.initializeApp(environment.firebase),
