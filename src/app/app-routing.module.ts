@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OverviewComponent } from './overview/overview.component';
-import { PersonalComponent } from './personal/personal.component';
+import { PersonalComponent } from './admin/components/personal/personal.component';
 import { NewKameradFormComponent } from './new-kamerad-form/new-kamerad-form.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { AdminComponent } from './admin/admin/admin.component';

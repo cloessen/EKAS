@@ -4,84 +4,93 @@
 //@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 //@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 //@import "~@angular/material/prebuilt-themes/purple-green.css";
-
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
 
 @import '~@swimlane/ngx-datatable/release/index.css';
 // @import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
-.container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+*{
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+.mat-app-background{
+  margin: 0;
 }
 
-@media (min-width: 576px) {
   .container {
-    max-width: 540px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
   }
-}
 
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
+  @media (min-width: 576px) {
+    .container {
+      max-width: 540px;
+    }
   }
-}
 
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
   }
-}
 
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px;
+    }
   }
-}
 
-//displayCenter
-.float-center {
-  width: 33%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
+  }
 
-@media (min-width: 576px) {
+  //displayCenter
   .float-center {
-    max-width: 440px;
+    width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 15%;
   }
-}
 
-@media (min-width: 768px) {
-  .float-center {
-    max-width: 620px;
+  @media (min-width: 576px) {
+    .float-center {
+      max-width: 440px;
+    }
   }
-}
 
-@media (min-width: 992px) {
-  .float-center {
-    max-width: 660px;
+  @media (min-width: 768px) {
+    .float-center {
+      max-width: 620px;
+    }
   }
-}
 
-@media (min-width: 1200px) {
-  .float-center {
-    max-width: 840px;
+  @media (min-width: 992px) {
+    .float-center {
+      max-width: 660px;
+    }
   }
-}
+
+  @media (min-width: 1200px) {
+    .float-center {
+      max-width: 840px;
+    }
+  }
 
 
 
 
 
 
-app-alert-top{
+  app-alert-top{
     //margin: 100px auto;
     position: fixed;
     z-index: 9999;

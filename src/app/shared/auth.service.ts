@@ -11,8 +11,12 @@ export class AuthService {
   }
 
   login(email, password) {
-    this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .catch(err => console.log(err));
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log(err.code);
+        return err.code;
+        });
   }
 
   logout() {

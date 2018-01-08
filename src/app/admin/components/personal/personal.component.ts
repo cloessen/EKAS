@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FirestoreService } from '../shared/firestore.service';
-import { Kamerad } from '../shared/interfaces';
 import { Subscription } from 'rxjs/Subscription';
 import { DatatableComponent } from '@swimlane/ngx-datatable/release';
+import { Kamerad } from '../../../shared/interfaces';
+import { FirestoreService } from '../../../shared/firestore.service';
 
 @Component({
   selector: 'app-personal',
@@ -34,8 +34,8 @@ export class PersonalComponent implements OnInit, OnDestroy {
     // { prop: 'funktionen.gwf', name: 'GWF' },
     { prop: 'rfid', name: 'RFID' }
   ];
-  loadingIndicator: boolean = true;
-  reorderable: boolean = true;
+  // loadingIndicator: boolean = true;
+  // reorderable: boolean = true;
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
 
@@ -43,7 +43,7 @@ export class PersonalComponent implements OnInit, OnDestroy {
 
   constructor(private firebase: FirestoreService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.personalSubscription = this.firebase.getPersonal().subscribe((data) => {
       // this.personal = data;
       this.rows = data;
@@ -51,7 +51,7 @@ export class PersonalComponent implements OnInit, OnDestroy {
       this.temp = [...data];
     });
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.personalSubscription.unsubscribe();
   }
 
@@ -59,7 +59,7 @@ export class PersonalComponent implements OnInit, OnDestroy {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function(d:Kamerad) {
+    const temp = this.temp.filter(function(d: Kamerad) {
       return d.lastName.toLowerCase().indexOf(val) !== -1 || !val;
     });
 

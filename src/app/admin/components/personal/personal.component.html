@@ -6,8 +6,8 @@
     <div class="divider"></div>
   <!-- </div> -->
   <!-- <div class="card-body"> -->
-    <div class="row">
-      <div class="input-field col s4">
+    <div class="grid">
+      <div class="input-field search">
           <i class="material-icons prefix">account_circle</i>
           <label for="suche">Suchen per Nachnamen</label>
           <input
@@ -17,13 +17,13 @@
           (keyup)='updateFilter($event)'
           />
         <ngx-datatable
-          class="material"
+          class="material data-table"
           [rows]="rows"
           [columns]="columns"
           [columnMode]="'force'"
           [headerHeight]="50"
           [footerHeight]="50"
-          [limit]="5"
+          [limit]="10"
           [selected]="selected"
           [selectionType]="'single'"
           [rowHeight]="'auto'">
