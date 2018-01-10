@@ -19,6 +19,11 @@ export interface Kamerad {
     gwf: boolean
   };
 }
+export interface User {
+  uid?: string;
+  email: string;
+  isAdmin: boolean;
+}
 
 export class Overview {
   sum  = 0;

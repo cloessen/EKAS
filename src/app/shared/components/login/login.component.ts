@@ -9,13 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  hasError = null;
+
   constructor(public _authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  onSubmitLogin(data) {
-    this._authService.login(data.email, data.password);
+  async onSubmitLogin(data) {
+    this.hasError = await this._authService.login(data.email, data.password);
   }
   onSubmitLogout() {
     this._authService.logout();
