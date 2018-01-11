@@ -1,7 +1,7 @@
 <button mat-raised-button color="accent" routerLink="/">Übersicht</button>
-<button mat-raised-button color="accent" routerLink="/editPersonal">Details bearbeiten</button>
-<button mat-raised-button color="accent" routerLink="/newPersonal">Kamerad*in hinzufügen</button>
-<button *ngIf="isAdmin" mat-raised-button color="accent" routerLink="/admin">ADMIN</button>
-
-<button mat-raised-button color="warn" (click)="onSubmitLogout()">Abmelden</button>
+<button mat-raised-button color="accent" routerLink="/admin/editPersonal">Details bearbeiten</button>
+<button mat-raised-button color="accent" routerLink="/admin/newPersonal">Kamerad*in hinzufügen</button>
+<button *ngIf="isAdmin" mat-raised-button color="accent" routerLink="/admin">Administration</button>
+<button mat-raised-button color="warn" class="logoutBtn" (click)="onSubmitLogout()">Abmelden</button>
+<i class="fas fa-camera-retro"></i>
 

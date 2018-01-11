@@ -1,7 +1,7 @@
 import { element } from 'protractor';
 import { Component, Input, OnInit } from '@angular/core';
-import { Kamerad } from '../shared/interfaces';
-import { FirestoreService } from '../shared/firestore.service';
+import { Kamerad } from '../../../shared/interfaces';
+import { FirestoreService } from '../../../shared/firestore.service';
 
 @Component({
   selector: 'app-kamerad-form',

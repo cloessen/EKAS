@@ -14,8 +14,10 @@ import { AuthService } from './shared/auth.service';
 import { FirestoreService } from './shared/firestore.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material/material.module';
-import { AdminModule } from './admin/admin/admin.module';
+import { AdminModule } from './admin/admin.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { AdminGuard } from './shared/admin-guard.service';
+
 
 
 @NgModule({
@@ -37,7 +39,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     AngularFireAuthModule,
     NgxDatatableModule
   ],
-  providers: [FirestoreService, AuthService],
+  providers: [FirestoreService, AuthService, AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

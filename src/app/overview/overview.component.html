@@ -1,15 +1,23 @@
 <div *ngIf="finishedLoading && overview.sum >0">
   <mat-toolbar style=" justify-content: space-between;">
-    <i class="fa fa-users fa-4x" aria-hidden="true">: {{overview.sum}}</i>
-    <i class="fa fa-tachometer fa-4x" aria-hidden="true"> <span [ngStyle]="{'color' : overview.PA ? 'black' : 'red'}">{{ overview.PA}} </span></i>
-    <i class="fa fa-truck fa-4x" aria-hidden="true"> <span [ngStyle]="{'color' : overview.CE ? 'black' : 'red'}">{{ overview.CE}} </span></i>
-    <i class="fa fa-universal-access fa-4x" aria-hidden="true"> <span
+    <span class="fa-4x">
+      <i class="fas fa-users"></i>: {{overview.sum}}
+    </span>
+    <span [ngStyle]="{'color' : overview.PA ? 'black' : 'red'}">
+      <i class="fas fa-tachometer fa-4x"> </i>: {{ overview.PA}}
+    </span>
+
+    <i class="fas fa-truck fa-4x"> <span [ngStyle]="{'color' : overview.CE ? 'black' : 'red'}">{{ overview.CE}} </span></i>
+    <i class="fas fa-universal-access fa-4x"> <span
       [ngStyle]="{'color' : overview.gsg ? 'black' : 'red'}">{{ overview.gsg}} </span></i>
-    <i class="fa fa-tree fa-4x" aria-hidden="true"> <span [ngStyle]="{'color' : overview.saw ? 'black' : 'red'}">{{ overview.saw}} </span></i>
-    <i class="fa fa-laptop fa-4x" aria-hidden="true"> <span [ngStyle]="{'color' : overview.eva ? 'black' : 'red'}">{{ overview.eva}} </span></i>
-    <i class="fa fa-clipboard fa-4x" aria-hidden="true"> <span [ngStyle]="{'color' : overview.log ? 'black' : 'red'}">{{ overview.log}} </span></i>
-    <i class="fa fa-plug fa-4x" aria-hidden="true"> <span [ngStyle]="{'color' : overview.NS ? 'black' : 'red'}">{{ overview.NS}} </span></i>
-    <i class="fa fa-medkit fa-4x" aria-hidden="true"><span [ngStyle]="{'color' : overview.RS ? 'black' : 'red'}">{{ overview.RS}} </span></i>
+    <i class="fas fa-tree fa-4x"> <span [ngStyle]="{'color' : overview.saw ? 'black' : 'red'}">{{ overview.saw}} </span></i>
+    <i class="fas fa-laptop fa-4x"> <span
+      [ngStyle]="{'color' : overview.eva ? 'black' : 'red'}">{{ overview.eva}} </span></i>
+    <i class="fas fa-clipboard fa-4x"> <span
+      [ngStyle]="{'color' : overview.log ? 'black' : 'red'}">{{ overview.log}} </span></i>
+    <i class="fas fa-plug fa-4x"> <span
+      [ngStyle]="{'color' : overview.NS ? 'black' : 'red'}">{{ overview.NS}} </span></i>
+    <i class="fas fa-medkit fa-4x"><span [ngStyle]="{'color' : overview.RS ? 'black' : 'red'}">{{ overview.RS}} </span></i>
   </mat-toolbar>
   <hr>  <!-- BLEIBT -->
   <!-- FÜHRUNGSKRÄFTE GWF / OWF / ZF-->
@@ -18,7 +26,7 @@
       <div class="grid-item" *ngFor="let kamerad of gwf">
         <header class="grid-item-name">
           <p
-              [ngStyle]="{'background-color' : kamerad.funktionen.gwf ? 'yellow' : 'white'}">
+            [ngStyle]="{'background-color' : kamerad.funktionen.gwf ? 'yellow' : 'white'}">
             {{kamerad.lastName}}, {{kamerad.firstName[0]}}.
           </p>
         </header>
@@ -36,7 +44,7 @@
       <div class="grid-item" *ngFor="let kamerad of owf">
         <header class="grid-item-name">
           <p
-              [ngStyle]="{'background-color' : kamerad.funktionen.owf ? 'yellow' : 'white'}">
+            [ngStyle]="{'background-color' : kamerad.funktionen.owf ? 'yellow' : 'white'}">
             {{kamerad.lastName}}, {{kamerad.firstName[0]}}.
           </p>
         </header>
@@ -100,26 +108,26 @@
   </div>
 
   <!--<mat-grid-list cols="6" rowHeight="3:1">-->
-    <!--<mat-grid-tile *ngFor="let kamerad of kameraden" class="mat-elevation-z4">-->
-      <!--<mat-card>-->
-        <!--<mat-card-title>-->
-          <!--<h3 style="padding: 0; margin: 0"-->
-              <!--[ngStyle]="{'background-color' : kamerad.funktionen.GF ? 'blue' : 'white', 'color' : kamerad.funktionen.GF ? 'white' : 'black'}">-->
-            <!--{{kamerad.lastName}}, {{kamerad.firstName[0]}}.-->
-          <!--</h3>-->
-        <!--</mat-card-title>-->
-        <!--<mat-card-content>-->
-          <!--<i class="fa fa-tachometer fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>-->
-          <!--<i class="fa fa-truck fa-2x" [ngStyle]="{'color' : kamerad.funktionen.CE ? 'green' : 'grey'}"></i>-->
-          <!--<i class="fa fa-universal-access fa-2x" [ngStyle]="{'color' : kamerad.funktionen.gsg ? 'green' : 'grey'}"></i>-->
-          <!--<i class="fa fa-tree fa-2x" [ngStyle]="{'color' : kamerad.funktionen.saw ? 'green' : 'grey'}"></i>-->
-          <!--<i class="fa fa-laptop fa-2x" [ngStyle]="{'color' : kamerad.funktionen.eva ? 'green' : 'grey'}"></i>-->
-          <!--<i class="fa fa-clipboard fa-2x" [ngStyle]="{'color' : kamerad.funktionen.log ? 'green' : 'grey'}"></i>-->
-          <!--<i class="fa fa-plug fa-2x" [ngStyle]="{'color' : kamerad.funktionen.NS ? 'green' : 'grey'}"></i>-->
-          <!--<i class="fa fa-medkit fa-2x" [ngStyle]="{'color' : kamerad.funktionen.RS ? 'green' : 'grey'}"></i>-->
-        <!--</mat-card-content>-->
-      <!--</mat-card>-->
-    <!--</mat-grid-tile>-->
+  <!--<mat-grid-tile *ngFor="let kamerad of kameraden" class="mat-elevation-z4">-->
+  <!--<mat-card>-->
+  <!--<mat-card-title>-->
+  <!--<h3 style="padding: 0; margin: 0"-->
+  <!--[ngStyle]="{'background-color' : kamerad.funktionen.GF ? 'blue' : 'white', 'color' : kamerad.funktionen.GF ? 'white' : 'black'}">-->
+  <!--{{kamerad.lastName}}, {{kamerad.firstName[0]}}.-->
+  <!--</h3>-->
+  <!--</mat-card-title>-->
+  <!--<mat-card-content>-->
+  <!--<i class="fa fa-tachometer fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>-->
+  <!--<i class="fa fa-truck fa-2x" [ngStyle]="{'color' : kamerad.funktionen.CE ? 'green' : 'grey'}"></i>-->
+  <!--<i class="fa fa-universal-access fa-2x" [ngStyle]="{'color' : kamerad.funktionen.gsg ? 'green' : 'grey'}"></i>-->
+  <!--<i class="fa fa-tree fa-2x" [ngStyle]="{'color' : kamerad.funktionen.saw ? 'green' : 'grey'}"></i>-->
+  <!--<i class="fa fa-laptop fa-2x" [ngStyle]="{'color' : kamerad.funktionen.eva ? 'green' : 'grey'}"></i>-->
+  <!--<i class="fa fa-clipboard fa-2x" [ngStyle]="{'color' : kamerad.funktionen.log ? 'green' : 'grey'}"></i>-->
+  <!--<i class="fa fa-plug fa-2x" [ngStyle]="{'color' : kamerad.funktionen.NS ? 'green' : 'grey'}"></i>-->
+  <!--<i class="fa fa-medkit fa-2x" [ngStyle]="{'color' : kamerad.funktionen.RS ? 'green' : 'grey'}"></i>-->
+  <!--</mat-card-content>-->
+  <!--</mat-card>-->
+  <!--</mat-grid-tile>-->
   <!--</mat-grid-list>-->
   <!-- / ALLE KAMERADEN AUSSER GWF / OWF / ZF-->
 </div>

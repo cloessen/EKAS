@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Kamerad } from '../shared/interfaces';
+import { Kamerad } from '../../../shared/interfaces';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirestoreService } from '../shared/firestore.service';
+import { FirestoreService } from '../../../shared/firestore.service';
 
 @Component({
   selector: 'app-new-kamerad-form',

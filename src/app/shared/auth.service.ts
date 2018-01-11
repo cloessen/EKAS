@@ -14,29 +14,29 @@ export class AuthService {
 
   constructor(public afAuth: AngularFireAuth, public afs: AngularFirestore) {}
 
-  getAuthState() {
+  public getAuthState() {
     return this.afAuth.authState;
   }
-  getUserUid() {
+  private getUserUid() {
     return this.afAuth.auth.currentUser.uid;
   }
-  getAdminStatus(uid) {
+  private getAdminStatus(uid) {
     this.usersCollection = this.afs.collection<User>('Users', (ref) => {
       return ref.where('uid', '==', uid );
     });
     this.users = this.usersCollection.valueChanges();
     return this.users;
   }
-  isAdmin() {
+  public isAdmin() {
     return this.getAdminStatus(this.getUserUid());
   }
 
-  login(email, password) {
+  public login(email, password) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .catch((err) =>  err);
   }
 
-  logout() {
+  public logout() {
     this.afAuth.auth.signOut();
   }
 }
