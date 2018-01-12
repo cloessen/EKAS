@@ -71,7 +71,7 @@ export class PersonalComponent implements OnInit, OnDestroy {
   }
 
   onSelect({ selected }) {
-    // console.log('Select Event', selected, this.selected);
+    console.log('Select Event', selected, this.selected);
   }
 
   onActivate(event) {

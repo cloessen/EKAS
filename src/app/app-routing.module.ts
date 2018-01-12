@@ -13,8 +13,25 @@ const routes: Routes = [
     path: '', component: OverviewComponent
   },
   {
+    path: 'admin', children: [
+      {
+        path: '', component: AdminComponent
+      },
+      {
+        path: 'editPersonal', component: PersonalComponent
+      },
+      {
+        path: 'newPersonal', component: NewKameradFormComponent
+      },
+    ]
+  },
+  {
     path: 'login', component: LoginComponent
-  }
+  },
+  {
+    path: '**', redirectTo: ''
+  },
+
 ];
 
 @NgModule({

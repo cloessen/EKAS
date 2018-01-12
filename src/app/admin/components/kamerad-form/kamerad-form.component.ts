@@ -1,4 +1,3 @@
-import { element } from 'protractor';
 import { Component, Input, OnInit } from '@angular/core';
 import { Kamerad } from '../../../shared/interfaces';
 import { FirestoreService } from '../../../shared/firestore.service';
@@ -27,8 +26,7 @@ export class KameradFormComponent implements OnInit {
         this.check1 = false;
         this.check2 = false;
       });
-    }
-    else {
+    } else {
       console.log('warum wurde diese Funktion ausgeführt? nicht beide Haken zum löschen gesetzt!');
     }
   }

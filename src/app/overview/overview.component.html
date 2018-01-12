@@ -3,21 +3,31 @@
     <span class="fa-4x">
       <i class="fas fa-users"></i>: {{overview.sum}}
     </span>
-    <span [ngStyle]="{'color' : overview.PA ? 'black' : 'red'}">
-      <i class="fas fa-tachometer fa-4x"> </i>: {{ overview.PA}}
+    <span [ngStyle]="{'color' : overview.PA ? 'black' : 'red'}" class="fa-4x">
+      <i class="fas fa-tachometer-alt"></i>: {{ overview.PA}}
+    </span>
+    <span [ngStyle]="{'color' : overview.CE ? 'black' : 'red'}" class="fa-4x">
+      <i class="fas fa-truck"></i>: {{ overview.CE}}
+    </span>
+    <span [ngStyle]="{'color' : overview.gsg ? 'black' : 'red'}" class="fa-4x">
+    <i class="fas fa-universal-access"></i>: {{ overview.gsg}}
+    </span>
+    <span [ngStyle]="{'color' : overview.saw ? 'black' : 'red'}" class="fa-4x">
+      <i class="fas fa-tree"></i>:  {{ overview.saw}}
+    </span>
+    <span [ngStyle]="{'color' : overview.eva ? 'black' : 'red'}" class="fa-4x">
+      <i class="fas fa-laptop"></i>:  {{ overview.eva}}
+    </span>
+    <span [ngStyle]="{'color' : overview.log ? 'black' : 'red'}" class="fa-4x">
+      <i class="fas fa-clipboard"></i>: {{ overview.log}}
+    </span>
+    <span [ngStyle]="{'color' : overview.NS ? 'black' : 'red'}" class="fa-4x">
+      <i class="fas fa-plug"></i>: {{ overview.NS}}
+    </span>
+    <span [ngStyle]="{'color' : overview.RS ? 'black' : 'red'}" class="fa-4x">
+      <i class="fas fa-medkit"></i>: {{ overview.RS}}
     </span>
 
-    <i class="fas fa-truck fa-4x"> <span [ngStyle]="{'color' : overview.CE ? 'black' : 'red'}">{{ overview.CE}} </span></i>
-    <i class="fas fa-universal-access fa-4x"> <span
-      [ngStyle]="{'color' : overview.gsg ? 'black' : 'red'}">{{ overview.gsg}} </span></i>
-    <i class="fas fa-tree fa-4x"> <span [ngStyle]="{'color' : overview.saw ? 'black' : 'red'}">{{ overview.saw}} </span></i>
-    <i class="fas fa-laptop fa-4x"> <span
-      [ngStyle]="{'color' : overview.eva ? 'black' : 'red'}">{{ overview.eva}} </span></i>
-    <i class="fas fa-clipboard fa-4x"> <span
-      [ngStyle]="{'color' : overview.log ? 'black' : 'red'}">{{ overview.log}} </span></i>
-    <i class="fas fa-plug fa-4x"> <span
-      [ngStyle]="{'color' : overview.NS ? 'black' : 'red'}">{{ overview.NS}} </span></i>
-    <i class="fas fa-medkit fa-4x"><span [ngStyle]="{'color' : overview.RS ? 'black' : 'red'}">{{ overview.RS}} </span></i>
   </mat-toolbar>
   <hr>  <!-- BLEIBT -->
   <!-- FÜHRUNGSKRÄFTE GWF / OWF / ZF-->
@@ -31,7 +41,7 @@
           </p>
         </header>
         <section class="grid-item-funktionen">
-          <i class="fa fa-tachometer fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>
+          <i class="fa fa-tachometer-alt fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>
           <i class="fa fa-truck fa-2x" [ngStyle]="{'color' : kamerad.funktionen.CE ? 'green' : 'grey'}"></i>
           <i class="fa fa-universal-access fa-2x" [ngStyle]="{'color' : kamerad.funktionen.gsg ? 'green' : 'grey'}"></i>
           <i class="fa fa-tree fa-2x" [ngStyle]="{'color' : kamerad.funktionen.saw ? 'green' : 'grey'}"></i>
@@ -49,7 +59,7 @@
           </p>
         </header>
         <section class="grid-item-funktionen">
-          <i class="fa fa-tachometer fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>
+          <i class="fa fa-tachometer-alt fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>
           <i class="fa fa-truck fa-2x" [ngStyle]="{'color' : kamerad.funktionen.CE ? 'green' : 'grey'}"></i>
           <i class="fa fa-universal-access fa-2x" [ngStyle]="{'color' : kamerad.funktionen.gsg ? 'green' : 'grey'}"></i>
           <i class="fa fa-tree fa-2x" [ngStyle]="{'color' : kamerad.funktionen.saw ? 'green' : 'grey'}"></i>
@@ -67,7 +77,7 @@
           </p>
         </header>
         <section class="grid-item-funktionen">
-          <i class="fa fa-tachometer fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>
+          <i class="fa fa-tachometer-alt fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>
           <i class="fa fa-truck fa-2x" [ngStyle]="{'color' : kamerad.funktionen.CE ? 'green' : 'grey'}"></i>
           <i class="fa fa-universal-access fa-2x" [ngStyle]="{'color' : kamerad.funktionen.gsg ? 'green' : 'grey'}"></i>
           <i class="fa fa-tree fa-2x" [ngStyle]="{'color' : kamerad.funktionen.saw ? 'green' : 'grey'}"></i>
@@ -89,12 +99,12 @@
       <div class="grid-item" *ngFor="let kamerad of kameraden">
         <header class="grid-item-name">
           <p
-            [ngStyle]="{'background-color' : kamerad.funktionen.GF ? 'blue' : 'white', 'color' : kamerad.funktionen.GF ? 'white' : 'black'}">
+            [ngStyle]="{'background-color' : kamerad.funktionen.GF ? 'blue' : '#e2e2e2', 'color' : kamerad.funktionen.GF ? 'white' : 'black'}">
             {{kamerad.lastName}}, {{kamerad.firstName[0]}}.
           </p>
         </header>
         <section class="grid-item-funktionen">
-          <i class="fa fa-tachometer fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>
+          <i class="fa fa-tachometer-alt fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>
           <i class="fa fa-truck fa-2x" [ngStyle]="{'color' : kamerad.funktionen.CE ? 'green' : 'grey'}"></i>
           <i class="fa fa-universal-access fa-2x" [ngStyle]="{'color' : kamerad.funktionen.gsg ? 'green' : 'grey'}"></i>
           <i class="fa fa-tree fa-2x" [ngStyle]="{'color' : kamerad.funktionen.saw ? 'green' : 'grey'}"></i>
@@ -117,7 +127,7 @@
   <!--</h3>-->
   <!--</mat-card-title>-->
   <!--<mat-card-content>-->
-  <!--<i class="fa fa-tachometer fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>-->
+  <!--<i class="fa fa-tachometer-alt fa-2x" [ngStyle]="{'color' : kamerad.funktionen.PA ? 'green' : 'grey'}"></i>-->
   <!--<i class="fa fa-truck fa-2x" [ngStyle]="{'color' : kamerad.funktionen.CE ? 'green' : 'grey'}"></i>-->
   <!--<i class="fa fa-universal-access fa-2x" [ngStyle]="{'color' : kamerad.funktionen.gsg ? 'green' : 'grey'}"></i>-->
   <!--<i class="fa fa-tree fa-2x" [ngStyle]="{'color' : kamerad.funktionen.saw ? 'green' : 'grey'}"></i>-->

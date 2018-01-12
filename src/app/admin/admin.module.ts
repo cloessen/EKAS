@@ -9,6 +9,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
+import { MaterialModule } from '../shared/material/material.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AdminRoutingModule } from './admin-routing.module';
     ReactiveFormsModule,
     NgxDatatableModule,
     SharedModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MaterialModule
   ],
   declarations: [
     AdminComponent,

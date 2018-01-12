@@ -5,22 +5,7 @@ import { AdminComponent } from './admin.component';
 import { PersonalComponent } from './components/personal/personal.component';
 import { NewKameradFormComponent } from './components/new-kamerad-form/new-kamerad-form.component';
 
-const adminRoutes: Routes = [
-  {
-    path: 'admin', canActivate: [AdminGuard], children: [
-      {
-        path: '', component: AdminComponent
-      },
-      {
-        path: 'editPersonal', component: PersonalComponent
-      },
-      {
-        path: 'newPersonal', component: NewKameradFormComponent
-      },
-    ]
-  },
-
-]
+const adminRoutes: Routes = [];
 
 @NgModule({
   imports: [

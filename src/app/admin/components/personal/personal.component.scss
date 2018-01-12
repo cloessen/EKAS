@@ -1,5 +1,17 @@
 .grid{
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-gap: 10px;
+  grid-template-areas:
+    "searchbox searchbox searchbox"
+    "personal-table personal-details personal-details";
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-gap: 5px;
+}
+.searchbox{
+  grid-area: searchbox;
+}
+.personal-table{
+  grid-area: personal-table;
+}
+.personal-details{
+  grid-area: personal-details;
 }
