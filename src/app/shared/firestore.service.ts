@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 import { Kamerad } from './interfaces';
 import { Observable } from 'rxjs/Observable';
+
 
 
 
@@ -15,14 +15,14 @@ export class FirestoreService {
   personal: Observable<Kamerad[]>;
 
   constructor(private afs: AngularFirestore) {
-    this.kameradenCollection = afs.collection<Kamerad>('Kameraden',(ref) => {
+    this.kameradenCollection = afs.collection<Kamerad>('Kameraden', (ref) => {
       return ref.orderBy('lastName', 'asc')
-        .where('anwesend','==', true)
+        .where('anwesend', '==', true);
     });
     this.kameraden = this.kameradenCollection.valueChanges();
 
-    this.personalCollection = afs.collection<Kamerad>('Kameraden',(ref) => {
-      return ref.orderBy('lastName', 'asc')
+    this.personalCollection = afs.collection<Kamerad>('Kameraden', (ref) => {
+      return ref.orderBy('lastName', 'asc');
     });
     this.personal = this.personalCollection.valueChanges();
     // this.kameraden = this.kameradenCollection.snapshotChanges().map(action => {
@@ -34,25 +34,24 @@ export class FirestoreService {
     // });
   }
 
-  deleteKamerad(kamerad:Kamerad){
+  deleteKamerad(kamerad: Kamerad) {
     return this.kameradenCollection.doc(kamerad.rfid).delete();
   }
 
 
-  getKameraden(){
+  getKameraden() {
     return this.kameraden;
   }
-  getPersonal(){
+  getPersonal() {
     return this.personal;
   }
 
-  saveNewKamerad(kamerad: Kamerad){
-    // this.kameradenCollection.doc(kamerad.rfid).set(kamerad).then(()=> console.log('safed???'));
-    this.kameradenCollection.doc(kamerad.rfid).set(kamerad).catch((err) => console.log(err));
+  saveNewKamerad(kamerad: Kamerad) {
+    return this.kameradenCollection.doc(kamerad.rfid).set(kamerad);
 
   }
-  updateKamerad(kamerad:Kamerad){
-    console.log('[FBS]: updateKamerad(): ',kamerad);
+  updateKamerad(kamerad: Kamerad) {
+    // console.log('[FBS]: updateKamerad(): ', kamerad);
     return this.kameradenCollection.doc(kamerad.rfid).update(kamerad);
 
   }

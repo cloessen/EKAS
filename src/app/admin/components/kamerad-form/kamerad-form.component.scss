@@ -1,0 +1,32 @@
+.grid-container{
+  display: grid;
+  grid-gap: 1em;
+  grid-template-areas:
+  "info"
+  "grid-functions"
+  "buttons";
+}
+.info{
+  grid-area: info;
+
+}
+.grid-functions{
+  grid-area: grid-functions;
+  display: grid;
+  grid-template-areas: "func1 func2 func3";
+}
+.func1{
+  grid-area: func1;
+}
+.func2{
+  grid-area: func2;
+}
+.func3{
+  grid-area: func3;
+}
+.buttons{
+  grid-area: buttons;
+}
+.full-width{
+  width: 100%;
+}

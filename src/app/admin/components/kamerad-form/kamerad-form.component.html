@@ -1,0 +1,183 @@
+
+<!--NEW PERSONAL FORM-->
+
+<ng-container >
+  <form #form="ngForm" (ngSubmit)="onSubmit(form); form.reset()" style="position: relative">
+    <!-- Ausgabe Name, Vorname und RFID -->
+    <div class="grid-container">
+      <div class="info bg-lg">
+        <mat-form-field >
+          <input matInput #inputName required id="inputName" placeholder="Nachname" [ngModel]="kamerad.lastName" name="lastName" class="full-width" tabindex="-1">
+          <span matSuffix><i class="far fa-edit"></i></span>
+          <mat-error *ngIf="inputName.value == ''">Nachname darf nicht leer sein!</mat-error>
+        </mat-form-field>
+        <mat-form-field >
+          <input matInput #inputFirstName required id="inputFirstName" placeholder="Vorname" [ngModel]="kamerad.firstName" name="firstName" class="full-width" tabindex="-1">
+          <span matSuffix><i class="far fa-edit"></i></span>
+          <mat-error *ngIf="inputFirstName.value == ''">Vorname darf nicht leer sein!</mat-error>
+        </mat-form-field>
+        <mat-form-field >
+          <input disabled matInput id="inputRfid" [(ngModel)]="kamerad.rfid" name="rfidRef" class="full-width" tabindex="-1">
+          <!--<span matSuffix>-->
+            <span matSuffix class="fa-layers fa-fw">
+            <i class="fas fa-circle" style="color:Tomato"></i>
+            <i class="fa-inverse fas fa-times" data-fa-transform="shrink-6"></i>
+            </span>
+          <!--</span>-->
+          <mat-hint>
+            <span matTooltip="Zum ändern der RFID muss der Kamerad neu angelegt werden">
+              RFID kann nicht geändert werden!*
+            </span>
+          </mat-hint>
+        </mat-form-field>
+        <input type="hidden" [ngModel]="kamerad.rfid" name="rfid">
+      </div>
+      <!-- / Ausgabe Name, Vorname und RFID -->
+      <!-- Ausgabe der Funktionen -->
+      <div ngModelGroup="funktionen" #funktionen="ngModelGroup" class="grid-functions bg-lg">
+        <div class="func1">
+          <p>
+            <label>
+              <mat-checkbox [ngModel]="kamerad.funktionen.PA" name="PA" color="primary"> Atemschutz <i
+                class="fas fa-tachometer-alt fa-lg"></i>
+              </mat-checkbox>
+            </label>
+          </p>
+          <p>
+            <label>
+              <mat-checkbox [ngModel]="kamerad.funktionen.CE" name="CE" color="primary"> Maschinist C/CE <i
+                class="fas fa-truck fa-lg"></i>
+              </mat-checkbox>
+            </label>
+          </p>
+          <p>
+            <label>
+              <mat-checkbox [ngModel]="kamerad.funktionen.saw" name="saw" color="primary"> Kettensägenführer <i
+                class="fas fa-tree fa-lg"></i>
+              </mat-checkbox>
+            </label>
+          </p>
+          <p>
+            <label>
+              <mat-checkbox [ngModel]="kamerad.funktionen.gsg" name="gsg" color="primary"> Gefahrgut <i
+                class="fas fa-universal-access fa-lg"></i>
+              </mat-checkbox>
+            </label>
+          </p>
+        </div>
+        <div class="func2">
+          <p>
+            <label>
+              <mat-checkbox [ngModel]="kamerad.funktionen.eva" name="eva" color="primary"> EFA-Gruppe <i
+                class="fas fa-laptop fa-lg"></i>
+              </mat-checkbox>
+            </label>
+          </p>
+          <p>
+            <label>
+              <mat-checkbox [ngModel]="kamerad.funktionen.log" name="log" color="primary"> Logistik-Gruppe <i
+                class="fas fa-clipboard fa-lg"></i>
+              </mat-checkbox>
+            </label>
+          </p>
+          <p>
+            <label>
+              <mat-checkbox [ngModel]="kamerad.funktionen.NS" name="NS" color="primary"> Notstrom-Gruppe <i
+                class="fas fa-plug fa-lg"></i>
+              </mat-checkbox>
+            </label>
+          </p>
+          <p>
+            <label>
+              <mat-checkbox [ngModel]="kamerad.funktionen.RS" name="RS" color="primary"> NotSan / RettAss / RettSan <i
+                class="fas fa-medkit fa-lg"></i>
+              </mat-checkbox>
+            </label>
+          </p>
+        </div>
+        <div class="func3">
+          <p>
+            <label>
+              <mat-checkbox
+                #gfCheckbox
+                [ngModel]="kamerad.funktionen.GF"
+                [disabled]="zfCheckbox.checked || owfCheckbox.checked || gwfCheckbox.checked ? true : false"
+                name="GF"
+                color="primary"> Gruppenführung
+              </mat-checkbox>
+            </label>
+          </p>
+          <p>
+            <label>
+              <mat-checkbox
+                #zfCheckbox
+                [ngModel]="kamerad.funktionen.ZF"
+                [disabled]="gfCheckbox.checked || owfCheckbox.checked || gwfCheckbox.checked ? true : false"
+                name="ZF"
+                color="primary"> Zugführung
+              </mat-checkbox>
+            </label>
+          </p>
+          <p>
+            <label>
+              <mat-checkbox
+                #owfCheckbox
+                [ngModel]="kamerad.funktionen.owf"
+                [disabled]="gfCheckbox.checked || zfCheckbox.checked || gwfCheckbox.checked ? true : false"
+                name="owf"
+                color="primary">
+                Ortswehrführung
+              </mat-checkbox>
+            </label>
+          </p>
+          <p>
+            <label>
+              <mat-checkbox
+                #gwfCheckbox
+                [ngModel]="kamerad.funktionen.gwf"
+                [disabled]="gfCheckbox.checked || zfCheckbox.checked || owfCheckbox.checked ? true : false"
+                name="gwf"
+                color="primary">
+                Gemeindewehrführung
+              </mat-checkbox>
+            </label>
+          </p>
+        </div>
+      </div>
+      <div class="buttons bg-lg">
+        <button mat-raised-button
+                color="primary"
+                type="submit">Speichern</button>
+        <button mat-raised-button
+                color="accent"
+                type="button"
+                (click)="onCancel()">Abbrechen</button>
+        <button mat-raised-button
+                color="warn"type="button"
+                [disabled]="!check1 || !check2"
+                (click)="onDelete(kamerad)"
+                class="btn btn-danger btn-block">Löschen</button>
+        <mat-checkbox color="warn"
+                      [(ngModel)]="check1"
+                      name="check1"
+                      type="checkbox"></mat-checkbox>
+        <mat-checkbox color="warn"
+                      [(ngModel)]="check2"
+                      name="check2"
+                      type="checkbox"></mat-checkbox>
+        <span class="text-muted">Beide Kästen anlicken um löschen freizugeben!</span>
+      </div>
+    </div>
+    <button type="button"
+            class="closeBtn-top-right"
+            mat-mini-fab
+            color="primary"
+            matTooltip="Schließen, Änderungen verwerfen"
+            (click)="onCancel()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </form>
+
+</ng-container>
+<!--/NEW PERSONAL FORM-->
+

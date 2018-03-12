@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
-// import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { OverviewComponent } from './overview/overview.component';
 import { AngularFireModule } from 'angularfire2';
@@ -15,35 +12,35 @@ import { HeaderComponent } from './header/header.component';
 import { SharedModule } from './shared/shared.module';
 import { AuthService } from './shared/auth.service';
 import { FirestoreService } from './shared/firestore.service';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { NewKameradFormComponent } from './new-kamerad-form/new-kamerad-form.component';
-import { KameradFormComponent } from './kamerad-form/kamerad-form.component';
-import { PersonalComponent } from './personal/personal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './shared/material/material.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { UIService } from './shared/ui.service';
+import { AuthGuard } from './shared/auth-guard.service';
+import { AdminGuard } from './shared/admin-guard.service';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     OverviewComponent,
-    PersonalComponent,
-    KameradFormComponent,
-    NewKameradFormComponent,
     HeaderComponent
   ],
   imports: [
-    // BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    FormsModule,
     ReactiveFormsModule,
-    NgxDatatableModule,
+    FormsModule,
+    MaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgxDatatableModule
   ],
-  providers: [FirestoreService, AuthService],
+  providers: [FirestoreService, AuthService, AdminGuard, AuthGuard, UIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

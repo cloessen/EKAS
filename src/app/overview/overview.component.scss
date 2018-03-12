@@ -1,3 +1,29 @@
+.grid-container{
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.grid-items{
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+}
+.grid-item{
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  //margin-bottom: 0;
+  //padding-bottom: 0;
+}
+.grid-item p{
+  font-weight: 500;
+  font-size: 2.5em;
+  padding: 0px;
+  margin: 5px;
+}
+.grid-item-funktionen{
+  margin: 3px;
+  padding-bottom: 3px;
+}
+
+
 .screensaver{
   width: 100%;
   height:100%;
@@ -16,3 +42,12 @@
   left: 50%;
   font-size: 4em;
 }
+mat-card {
+  width: 100%;
+}
+.example-fill-remaining-space {
+  // This fills the remaining space, by using flexbox.
+  // Every toolbar row uses a flexbox row layout.
+  flex: 1 1 auto;
+}
+

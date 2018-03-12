@@ -20,7 +20,7 @@ function createWindows () {
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     mainWindow = null
-  });  
+  });
   // Open the DevTools.
   // win.webContents.openDevTools()
 
@@ -38,7 +38,7 @@ function createNewPersonalWindow(){
     backgroundColor: '#868e96'
 
   });
-  newPersonalWindow.loadURL(URL + '/newPersonal');  
+  newPersonalWindow.loadURL(URL + '/newPersonal');
   newPersonalWindow.show();
 }
 
@@ -124,4 +124,4 @@ const template = [
   }
 ];
 const menu = Menu.buildFromTemplate(template);
-Menu.setApplicationMenu(menu)
+Menu.setApplicationMenu(menu);

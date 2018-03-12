@@ -1,0 +1,40 @@
+<mat-toolbar fxLayout fxLayoutAlign="center center">
+  <h3>Administration</h3>
+</mat-toolbar>
+
+<div fxLayout fxLayoutAlign="center" fxLayoutGap="10px">
+  <div fxFlex></div>
+  <div fxFlex="60">
+    <mat-form-field style="width: 66%">
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        matInput
+        id="suche"
+        placeholder="Suchen..."
+        (keyup)='updateFilter($event)'
+      >
+      <mat-hint >...nach Nachname</mat-hint>
+    </mat-form-field>
+    <button mat-fab color="primary" matTooltip="Neuen Kameraden anlegen" matTooltipPosition="above" style="float: right" (click)="onOpenAddDialog()">
+      <mat-icon>person_add</mat-icon>
+    </button>
+    <ngx-datatable
+        class="material"
+        [rows]="rows"
+        [columns]="columns"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [limit]="25"
+        [selected]="selected"
+        [selectionType]="'single'"
+        [rowHeight]="'auto'"
+        (select)="onSelect()">
+    </ngx-datatable>
+  </div>
+  <div fxFlex></div>
+</div>
+
+
+
+

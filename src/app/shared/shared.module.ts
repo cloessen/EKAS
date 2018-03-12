@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JaneinPipe } from './janein.pipe';
-import { FirestoreService } from './firestore.service';
 import { AlertTopComponent } from './components/alert-top/alert-top.component';
-import { AuthService } from './auth.service';
 import { LoginComponent } from './components/login/login.component';
+import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    MaterialModule,
+    FormsModule,
+    FlexLayoutModule
   ],
   declarations: [
     JaneinPipe,
@@ -20,7 +24,8 @@ import { FormsModule } from '@angular/forms';
   exports: [
     JaneinPipe,
     AlertTopComponent,
-    LoginComponent
+    LoginComponent,
+    FlexLayoutModule
   ],
   providers: []
 })

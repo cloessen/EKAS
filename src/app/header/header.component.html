@@ -1,5 +1,28 @@
-<a routerLink="/" class="btn btn-light">Übersicht</a>
-<a routerLink="/editPersonal" class="btn btn-light">Details bearbeiten</a>
-<a routerLink="/newPersonal" class="btn btn-light">Kamerad*in hinzufügen</a>
+<div class="menuBtns" *ngIf="isAdmin">
+  <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onSubmitLogout()">
+      <mat-icon color="warn">power_settings_new</mat-icon>
+      <span>Abmelden</span>
+    </button>
+    <div >
+      <mat-divider></mat-divider>
+      <button mat-menu-item  routerLink="/">
+        <mat-icon>view_module</mat-icon>
+        <span>Übersicht</span>
+      </button>
+      <button mat-menu-item routerLink="/admin/editPersonal">
+        <mat-icon>people</mat-icon>
+        <span>Administration</span>
+      </button>
+    </div>
+  </mat-menu>
+</div>
+<div class="menuBtns" *ngIf="!isAdmin">
+  <button mat-mini-fab color="warn" matTooltip="Abmelden" (click)="onSubmitLogout()">
+    <mat-icon>power_settings_new</mat-icon>
+  </button>
+</div>
 
-<button class="btn btn-danger" (click)="onSubmitLogout()">Abmelden</button>

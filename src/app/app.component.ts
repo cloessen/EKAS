@@ -1,10 +1,9 @@
-import { Observable } from 'rxjs/Observable';
 import { AuthService } from './shared/auth.service';
 import { Component } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import * as firebase from 'firebase/app';
-import { User } from 'firebase/app';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase/app';
 
 
 @Component({
@@ -24,10 +23,12 @@ export class AppComponent implements OnInit {
   state = 'noError';
   title = 'app';
   showMessageTime = 4500; // Duration in ms
+  authState$: Observable<firebase.User>;
 
   constructor(public _authService: AuthService) { }
 
   ngOnInit() {
+    this.authState$ = this._authService.getAuthState();
   }
   handleDone() {
     // tslint:disable-next-line:curly
