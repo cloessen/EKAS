@@ -10,12 +10,12 @@ const routes: Routes = [
         path: '',
         redirectTo: 'editPersonal',
         pathMatch: 'full',
-        // canActivate: [AdminGuard]
+        // canActivate: [AuthGuard]
       },
       {
         path: 'editPersonal',
         component: PersonalComponent,
-        // canActivate: [AdminGuard]
+        // canActivate: [AuthGuard]
       }
     ]
   },

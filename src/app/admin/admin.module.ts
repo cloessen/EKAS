@@ -10,8 +10,6 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material/material.module';
 import { AdminRoutingModule } from './admin-routing.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { AdminGuard } from '../shared/admin-guard.service';
 
 
 @NgModule({
@@ -31,8 +29,7 @@ import { AdminGuard } from '../shared/admin-guard.service';
     NewKameradFormComponent,
     UsersComponent
   ],
-  providers: [
-  ],
+  providers: [],
   entryComponents: [
     KameradFormComponent,
     NewKameradFormComponent

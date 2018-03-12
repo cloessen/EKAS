@@ -1,16 +1,13 @@
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { CanLoad, Route} from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 
 @Injectable()
-export class AdminGuard implements CanActivate {
+export class AdminGuard implements CanLoad {
 
   constructor(private authService: AuthService) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    // return true;
-    return this.authService.isAdmin().map((data) => {
-      return data[0].isAdmin;
-    });
+  canLoad(route: Route) {
+    return this.authService.isAdmin().map(data => data[0].isAdmin );
   }
 }

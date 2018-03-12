@@ -23,12 +23,12 @@ export class AppComponent implements OnInit {
   state = 'noError';
   title = 'app';
   showMessageTime = 4500; // Duration in ms
-  authState: Observable<firebase.User>;
+  authState$: Observable<firebase.User>;
 
   constructor(public _authService: AuthService) { }
 
   ngOnInit() {
-    this.authState = this._authService.getAuthState();
+    this.authState$ = this._authService.getAuthState();
   }
   handleDone() {
     // tslint:disable-next-line:curly
