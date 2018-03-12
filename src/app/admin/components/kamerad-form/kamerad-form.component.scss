@@ -11,6 +11,7 @@
 
 }
 .grid-functions{
+  grid-area: grid-functions;
   display: grid;
   grid-template-areas: "func1 func2 func3";
 }

@@ -47,12 +47,11 @@ export class FirestoreService {
   }
 
   saveNewKamerad(kamerad: Kamerad) {
-    // this.kameradenCollection.doc(kamerad.rfid).set(kamerad).then(()=> console.log('safed???'));
-    this.kameradenCollection.doc(kamerad.rfid).set(kamerad).catch((err) => console.log(err));
+    return this.kameradenCollection.doc(kamerad.rfid).set(kamerad);
 
   }
   updateKamerad(kamerad: Kamerad) {
-    console.log('[FBS]: updateKamerad(): ', kamerad);
+    // console.log('[FBS]: updateKamerad(): ', kamerad);
     return this.kameradenCollection.doc(kamerad.rfid).update(kamerad);
 
   }

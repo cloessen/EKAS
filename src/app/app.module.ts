@@ -14,9 +14,11 @@ import { AuthService } from './shared/auth.service';
 import { FirestoreService } from './shared/firestore.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material/material.module';
-import { AdminModule } from './admin/admin.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AdminGuard } from './shared/admin-guard.service';
+import { UIService } from './shared/ui.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 
@@ -33,13 +35,12 @@ import { AdminGuard } from './shared/admin-guard.service';
     ReactiveFormsModule,
     FormsModule,
     MaterialModule,
-    AdminModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     NgxDatatableModule
   ],
-  providers: [FirestoreService, AuthService, AdminGuard],
+  providers: [FirestoreService, AuthService, AdminGuard, UIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

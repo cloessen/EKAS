@@ -3,6 +3,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { DatatableComponent } from '@swimlane/ngx-datatable/release';
 import { Kamerad } from '../../../shared/interfaces';
 import { FirestoreService } from '../../../shared/firestore.service';
+import { MatDialog } from '@angular/material';
+import { KameradFormComponent } from '../kamerad-form/kamerad-form.component';
+import { NewKameradFormComponent } from '../new-kamerad-form/new-kamerad-form.component';
 
 @Component({
   selector: 'app-personal',
@@ -41,7 +44,7 @@ export class PersonalComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private firebase: FirestoreService) { }
+  constructor(private firebase: FirestoreService, private matDialog: MatDialog) { }
 
   ngOnInit() {
     this.personalSubscription = this.firebase.getPersonal().subscribe((data) => {
@@ -49,6 +52,9 @@ export class PersonalComponent implements OnInit, OnDestroy {
       this.rows = data;
       // this.testrows = data;
       this.temp = [...data];
+      this.selected[0] = this.temp[0];
+      // console.log('[TABLE] onInit() this.selected: ', this.selected);
+      // console.log('[TABLE] onInit() data[0]: ', data[0]);
     });
   }
   ngOnDestroy() {
@@ -70,12 +76,18 @@ export class PersonalComponent implements OnInit, OnDestroy {
     this.table.offset = 0;
   }
 
-  onSelect({ selected }) {
-    console.log('Select Event', selected, this.selected);
+  onSelect() {
+    this.matDialog.open(KameradFormComponent, {
+      data: this.selected[0],
+      disableClose: true,
+      backdropClass: 'darker-backdrop'
+    });
   }
-
-  onActivate(event) {
-  //   console.log('Activate Event', event);
+  onOpenAddDialog() {
+    this.matDialog.open(NewKameradFormComponent, {
+      disableClose: true,
+      backdropClass: 'darker-backdrop'
+    });
   }
 
 }

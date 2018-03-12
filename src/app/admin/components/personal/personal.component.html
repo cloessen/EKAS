@@ -1,10 +1,12 @@
-<mat-toolbar>
-  <span>Details ansehen / bearbeiten</span>
+<mat-toolbar fxLayout fxLayoutAlign="center center">
+  <h3>Administration</h3>
 </mat-toolbar>
-<div class="grid">
-  <div class="input-field search searchbox bg-lg">
-    <i class="fas fa-user-circle fa-lg"></i>
-    <mat-form-field>
+
+<div fxLayout fxLayoutAlign="center" fxLayoutGap="10px">
+  <div fxFlex></div>
+  <div fxFlex="60">
+    <mat-form-field style="width: 66%">
+      <mat-icon matPrefix>search</mat-icon>
       <input
         matInput
         id="suche"
@@ -13,32 +15,26 @@
       >
       <mat-hint >...nach Nachname</mat-hint>
     </mat-form-field>
-      <!--<label for="suche">Suchen per Nachnamen</label>-->
-      <!--<input-->
-        <!--class='validate'-->
-        <!--id='suche'-->
-        <!--type='text'-->
-        <!--(keyup)='updateFilter($event)'-->
-      <!--/>-->
-  </div>
-  <div class="personal-table bg-lg">
+    <button mat-fab color="primary" matTooltip="Neuen Kameraden anlegen" matTooltipPosition="above" style="float: right" (click)="onOpenAddDialog()">
+      <mat-icon>person_add</mat-icon>
+    </button>
     <ngx-datatable
-      class="material data-table bg-lg"
-      [rows]="rows"
-      [columns]="columns"
-      [columnMode]="'force'"
-      [headerHeight]="50"
-      [footerHeight]="50"
-      [limit]="10"
-      [selected]="selected"
-      [selectionType]="'single'"
-      [rowHeight]="'auto'">
+        class="material"
+        [rows]="rows"
+        [columns]="columns"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [limit]="25"
+        [selected]="selected"
+        [selectionType]="'single'"
+        [rowHeight]="'auto'"
+        (select)="onSelect()">
     </ngx-datatable>
   </div>
-  <div class="personal-details bg-lg">
-    <div *ngIf="selected.length > 0">
-      <app-kamerad-form [personal]="selected[0]" [check1]="false" [check2]="false"></app-kamerad-form>
-    </div>
-  </div>
+  <div fxFlex></div>
 </div>
+
+
+
 

@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Kamerad } from '../../../shared/interfaces';
 import { FirestoreService } from '../../../shared/firestore.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { UIService } from '../../../shared/ui.service';
 
 @Component({
   selector: 'app-kamerad-form',
@@ -9,32 +11,60 @@ import { FirestoreService } from '../../../shared/firestore.service';
 })
 export class KameradFormComponent implements OnInit {
 
-  @Input() check1 = false;
-  @Input() check2 = false;
+  check1 = false;
+  check2 = false;
 
-  @Input('personal') kamerad: Kamerad;
+  // @Input('personal') kamerad: Kamerad;
+  kamerad: Kamerad;
 
   public modal: any;
 
-  constructor(private firebase: FirestoreService) { }
+  constructor(
+    private UI: UIService,
+    private firebase: FirestoreService,
+    @Inject(MAT_DIALOG_DATA) public data: Kamerad,
+    public dialogRef: MatDialogRef<KameradFormComponent>) {
+  }
 
   ngOnInit() {
+    this.kamerad = this.data;
   }
   onDelete(kamerad: Kamerad) {
     if (this.check1 && this.check2) {
-      this.firebase.deleteKamerad(kamerad).then(() => {
-        this.check1 = false;
-        this.check2 = false;
-      });
+      this.firebase.deleteKamerad(kamerad)
+        .catch((error) => this.UI.showSnackBar(error.message, 3000));
+      this.dialogRef.close();
     } else {
       console.log('warum wurde diese Funktion ausgeführt? nicht beide Haken zum löschen gesetzt!');
     }
   }
 
   onSubmit(form) {
+    this.dialogRef.close();
     const updatedKamerad: Kamerad = form.value;
-    this.firebase.updateKamerad(updatedKamerad).then(() => console.log('updated')).catch((err) => console.log(err));
-    //
+    for (const funktion in updatedKamerad.funktionen) {
+      if (!updatedKamerad.funktionen[funktion]) {
+        updatedKamerad.funktionen[funktion] = false;
+      }
+    }
+    if (!updatedKamerad.funktionen.GF) {
+      updatedKamerad.funktionen.GF = false;
+    }
+    if (!updatedKamerad.funktionen.ZF) {
+      updatedKamerad.funktionen.ZF = false;
+    }
+    if (!updatedKamerad.funktionen.owf) {
+      updatedKamerad.funktionen.owf = false;
+    }
+    if (!updatedKamerad.funktionen.gwf) {
+      updatedKamerad.funktionen.gwf = false;
+    }
+    this.firebase.updateKamerad(updatedKamerad)
+      .then(() => this.UI.showSnackBar('Update erfolgreich gespeichert', 2500))
+      .catch((error) => this.UI.showSnackBar(error.message, 3000));
+  }
+  onCancel() {
+    this.dialogRef.close();
   }
 
 }

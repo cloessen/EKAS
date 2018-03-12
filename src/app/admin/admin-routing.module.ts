@@ -1,16 +1,30 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AdminGuard } from '../shared/admin-guard.service';
-import { AdminComponent } from './admin.component';
+import { Routes, RouterModule } from '@angular/router';
 import { PersonalComponent } from './components/personal/personal.component';
-import { NewKameradFormComponent } from './components/new-kamerad-form/new-kamerad-form.component';
 
-const adminRoutes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    children: [
+      {
+        path: '',
+        redirectTo: 'editPersonal',
+        pathMatch: 'full',
+        // canActivate: [AdminGuard]
+      },
+      {
+        path: 'editPersonal',
+        component: PersonalComponent,
+        // canActivate: [AdminGuard]
+      }
+    ]
+  },
+
+
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(adminRoutes)
-  ],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }

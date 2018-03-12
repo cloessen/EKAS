@@ -5,6 +5,7 @@ import { AlertTopComponent } from './components/alert-top/alert-top.component';
 import { LoginComponent } from './components/login/login.component';
 import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    FlexLayoutModule
   ],
   declarations: [
     JaneinPipe,
@@ -22,7 +24,8 @@ import { FormsModule } from '@angular/forms';
   exports: [
     JaneinPipe,
     AlertTopComponent,
-    LoginComponent
+    LoginComponent,
+    FlexLayoutModule
   ],
   providers: []
 })
