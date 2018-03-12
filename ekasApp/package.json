@@ -17,7 +17,7 @@
   "author": "Sebastian Claußen <cloessen@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^1.7.9",
-    "electron-packager": "^10.1.0"
+    "electron": "^1.8.3",
+    "electron-packager": "^10.1.2"
   }
 }
