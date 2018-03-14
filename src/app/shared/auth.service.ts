@@ -20,14 +20,15 @@ export class AuthService {
   private getUserUid() {
     return this.afAuth.auth.currentUser.uid;
   }
-  private getAdminStatus(uid) {
+  private getAdminStatus(uid): Observable<boolean> {
     this.usersCollection = this.afs.collection<User>('Users', (ref) => {
       return ref.where('uid', '==', uid );
     });
-    this.users = this.usersCollection.valueChanges();
-    return this.users;
+    return this.usersCollection.valueChanges().map(data => {
+      return data[0].isAdmin;
+    });
   }
-  public isAdmin() {
+  public isAdmin(): Observable<boolean> {
     return this.getAdminStatus(this.getUserUid());
   }
 

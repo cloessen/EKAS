@@ -1,4 +1,4 @@
-<div class="menuBtns" *ngIf="isAdmin">
+<div class="menuBtns" *ngIf="(isAdmin$ | async)">
   <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu">
     <mat-icon>menu</mat-icon>
   </button>
@@ -20,9 +20,10 @@
     </div>
   </mat-menu>
 </div>
-<div class="menuBtns" *ngIf="!isAdmin">
+<div class="menuBtns" *ngIf="!(isAdmin$ | async)">
   <button mat-mini-fab color="warn" matTooltip="Abmelden" (click)="onSubmitLogout()">
     <mat-icon>power_settings_new</mat-icon>
   </button>
 </div>
+
 
