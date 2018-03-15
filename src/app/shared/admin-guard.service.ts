@@ -13,11 +13,12 @@ export class AdminGuard implements CanLoad {
       console.log('no user object');
       return Observable.of(false);
     }else {
-      console.log('we have a logged in User');
-      let test;
-      this.authService.isAdmin().subscribe(x => test = x);
-      console.log(test);
-      return test;
+      // console.log('we have a logged in User');
+      // let test;
+      // this.authService.isAdmin().subscribe(x => test = x);
+      // console.log(test);
+      // return test;
+      return Observable.of(true);
 
     }
     // return true;
