@@ -1,8 +1,4 @@
-<mat-toolbar fxLayout fxLayoutAlign="center center">
-  <h3>Administration</h3>
-</mat-toolbar>
-
-<div fxLayout fxLayoutAlign="center" fxLayoutGap="10px">
+<div fxLayout fxLayoutAlign="center" fxLayoutGap="10px" *ngIf="!(isLoading$ | async); else spinner">
   <div fxFlex></div>
   <div fxFlex="60">
     <mat-form-field style="width: 66%">
@@ -34,6 +30,10 @@
   </div>
   <div fxFlex></div>
 </div>
+
+<ng-template #spinner>
+  <div class="spinner spinner-1 float-center"></div>
+</ng-template>
 
 
 

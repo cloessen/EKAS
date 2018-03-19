@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 import { Kamerad } from './interfaces';
 import { Observable } from 'rxjs/Observable';
+import { UIService } from './ui.service';
 
 
 
@@ -51,7 +52,6 @@ export class FirestoreService {
 
   }
   updateKamerad(kamerad: Kamerad) {
-    // console.log('[FBS]: updateKamerad(): ', kamerad);
     return this.kameradenCollection.doc(kamerad.rfid).update(kamerad);
 
   }

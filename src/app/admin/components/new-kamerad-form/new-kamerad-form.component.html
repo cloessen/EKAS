@@ -129,7 +129,13 @@
       </div>
     </div>
     <div class="buttons bg-lg">
-      <button mat-raised-button color="accent" type="submit" >Speichern</button>
+      <button mat-raised-button
+              color="primary"
+              type="submit">Speichern</button>
+      <button mat-raised-button
+              color="accent"
+              type="button"
+              (click)="onCancel()">Abbrechen</button>
     </div>
   </div>
 </form>

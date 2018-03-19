@@ -1,21 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PersonalComponent } from './components/personal/personal.component';
+import { AdminComponent } from './admin.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: AdminComponent,
     children: [
       {
         path: '',
-        redirectTo: 'editPersonal',
-        pathMatch: 'full',
-        // canActivate: [AuthGuard]
+        redirectTo: 'editPersonal'
       },
       {
         path: 'editPersonal',
-        component: PersonalComponent,
-        // canActivate: [AuthGuard]
+        component: PersonalComponent
+      },
+      {
+        path: 'editUser',
+        component: UsersComponent
       }
     ]
   },

@@ -6,6 +6,8 @@ import { FirestoreService } from '../../../shared/firestore.service';
 import { MatDialog } from '@angular/material';
 import { KameradFormComponent } from '../kamerad-form/kamerad-form.component';
 import { NewKameradFormComponent } from '../new-kamerad-form/new-kamerad-form.component';
+import { UIService } from '../../../shared/ui.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-personal',
@@ -15,46 +17,26 @@ import { NewKameradFormComponent } from '../new-kamerad-form/new-kamerad-form.co
 export class PersonalComponent implements OnInit, OnDestroy {
 
   public personalSubscription: Subscription;
-  // public personal : Kamerad[];
+  public isLoading$: Observable<boolean> = this.UI.isLoading$;
   rows: Kamerad[] = [];
-  testrows: Kamerad[] = [];
   temp: Kamerad[] = [];
   selected = [];
   columns = [
     { prop: 'lastName', name: 'Nachname' },
     { prop: 'firstName', name: 'Vorname' },
-    // { prop: 'funktionen.PA', name: 'Atemschutz' },
-    // { prop: 'funktionen.CE', name: 'Maschinist' },
-    // { prop: 'funktionen.gsg', name: 'Gefahrgut' },
-    // { prop: 'funktionen.saw', name: 'Sägenführer' },
-    // { prop: 'funktionen.eva', name: 'EVA-Gruppe' },
-    // { prop: 'funktionen.log', name: 'Logistik-Gruppe' },
-    // { prop: 'funktionen.NS', name: 'Notstrom-Gruppe' },
-    // { prop: 'funktionen.RS', name: 'RettSan' },
-    // { prop: 'funktionen.GF', name: 'Gruppenführer' },
-    // { prop: 'funktionen.ZF', name: 'Zugführer' },
-    // { prop: 'funktionen.owf', name: 'OWF' },
-    // { prop: 'funktionen.gwf', name: 'GWF' },
     { prop: 'rfid', name: 'RFID' }
   ];
-  // loadingIndicator: boolean = true;
-  // reorderable: boolean = true;
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
-
-
-
-  constructor(private firebase: FirestoreService, private matDialog: MatDialog) { }
+  constructor(private firebase: FirestoreService, private matDialog: MatDialog, private UI: UIService) { }
 
   ngOnInit() {
+    this.UI.isLoading$.next(true);
     this.personalSubscription = this.firebase.getPersonal().subscribe((data) => {
-      // this.personal = data;
+      this.UI.isLoading$.next(false);
       this.rows = data;
-      // this.testrows = data;
       this.temp = [...data];
       this.selected[0] = this.temp[0];
-      // console.log('[TABLE] onInit() this.selected: ', this.selected);
-      // console.log('[TABLE] onInit() data[0]: ', data[0]);
     });
   }
   ngOnDestroy() {

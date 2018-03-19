@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class UIService {
+
+  public isLoading$ = new BehaviorSubject(false);
 
   constructor(public snackBar: MatSnackBar) {}
 

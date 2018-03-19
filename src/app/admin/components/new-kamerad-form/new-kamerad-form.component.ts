@@ -13,6 +13,8 @@ import { KameradFormComponent } from '../kamerad-form/kamerad-form.component';
 })
 export class NewKameradFormComponent implements OnInit {
 
+  public isLoading$ = this.UI.isLoading$;
+
   newKameradForm = new FormGroup({
     lastName: new FormControl(null , Validators.required),
     firstName: new FormControl(null, Validators.required),
@@ -68,6 +70,7 @@ export class NewKameradFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.UI.isLoading$.next(true);
     this.dialogRef.close();
     const newKamerad: Kamerad = this.newKameradForm.value;
     newKamerad.anwesend = false;
@@ -89,8 +92,14 @@ export class NewKameradFormComponent implements OnInit {
         newKamerad.funktionen.gwf = false;
       }
     this.firebase.saveNewKamerad(newKamerad)
-      .then(() => this.UI.showSnackBar('Neuer Kamerad erfolgreich gespeichert', 2500))
-      .catch((error) => this.UI.showSnackBar(error.message, 3000));
+      .then(() => {
+        this.UI.isLoading$.next(false);
+        this.UI.showSnackBar('Neuer Kamerad erfolgreich gespeichert', 2500);
+      })
+      .catch((error) => {
+        this.UI.isLoading$.next(false);
+        this.UI.showSnackBar(error.message, 3000);
+      });
   }
 
   checkDisables(e?) {
@@ -119,6 +128,9 @@ export class NewKameradFormComponent implements OnInit {
         console.log('Dieser Fall sollte nicht auftreten! FEHLER CODE 0001');
         this.UI.showSnackBar(`Ein schwerer Fehler ist aufgereten! Bitte schicke eine E-mail mit Informationen zum Ablauf und dem Fehlercode: 0001 an: s.claussen@me.com`, 10000);
     }
+  }
+  onCancel() {
+    this.dialogRef.close();
   }
 
 }
