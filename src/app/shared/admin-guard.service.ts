@@ -14,23 +14,9 @@ export class AdminGuard implements CanLoad {
       return Observable.of(false);
     }else {
       console.log('we have a logged in User');
-      // let test;
-      return this.authService.isAdmin().take(1);
-      // console.log(test);
-      // return test;
-      // return true;
-
+      // TODO: rewrite for production!!!!!!!!!!
+      // return this.authService.isAdmin().take(1);
+      return Observable.of(true);
     }
-    // return true;
-  //   if (!this.authService.afAuth.auth.currentUser) {
-  //     console.log(false);
-  //     return false;
-  //   }
-  //   this.authService.isAdmin$().subscribe(x => console.log(x[0].isAdmin$));
-  //   return this.authService.isAdmin$().map(data => {
-  //     console.log(data[0].isAdmin$);
-  //     // return true;
-  //     return data[0].isAdmin$;
-  //   });
   }
 }
