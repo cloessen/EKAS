@@ -17,7 +17,8 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
-    canLoad: [AdminGuard],
+    // TODO: rewrite for production!!!!!!!!!!
+    // canLoad: [AdminGuard],
   },
   {
     path: '**', redirectTo: ''

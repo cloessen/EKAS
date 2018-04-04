@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { UserService } from './user.service';
 
 
 
@@ -27,6 +28,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     LoginComponent,
     FlexLayoutModule
   ],
-  providers: []
+  providers: [UserService]
 })
 export class SharedModule { }

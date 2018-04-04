@@ -23,6 +23,7 @@ export interface User {
   uid?: string;
   email: string;
   isAdmin: boolean;
+  feuerwehr: string;
 }
 
 export class Overview {

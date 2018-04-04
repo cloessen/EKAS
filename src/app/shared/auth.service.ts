@@ -4,6 +4,7 @@ import { User } from './interfaces';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
+import { UserService } from './user.service';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +13,7 @@ export class AuthService {
   public users: Observable<User[]>;
 
 
-  constructor(public afAuth: AngularFireAuth, public afs: AngularFirestore) {}
+  constructor(public afAuth: AngularFireAuth, public afs: AngularFirestore, private userService: UserService) {}
 
   public getAuthState() {
     return this.afAuth.authState;

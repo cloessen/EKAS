@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../shared/user.service';
 
 @Component({
   selector: 'app-users',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private users: UserService) { }
 
   ngOnInit() {
+    // this.users.getCurrentFF().subscribe(x => console.log(x));
   }
 
 }
