@@ -14,15 +14,15 @@ export class FirestoreService {
   currentFF: string;
 
   constructor(private afs: AngularFirestore, private userService: UserService) {
-    this.userService.getCurrentFF().subscribe(feuerwehr => this.currentFF = feuerwehr);
-    console.log(this.currentFF);
-    this.kameradenCollection = afs.collection<Kamerad>(`Feuerwehr/${this.currentFF}/Kameraden`, (ref) => {
+    // this.userService.getCurrentFF().subscribe(feuerwehr => this.currentFF = feuerwehr);
+    // console.log(this.currentFF);
+    this.kameradenCollection = afs.collection<Kamerad>('Kameraden', (ref) => {
       return ref.orderBy('lastName', 'asc')
         .where('anwesend', '==', true);
     });
     this.kameraden = this.kameradenCollection.valueChanges();
 
-    this.personalCollection = afs.collection<Kamerad>(`Feuerwehr/${this.currentFF}/Kameraden`, (ref) => {
+    this.personalCollection = afs.collection<Kamerad>('Kameraden', (ref) => {
       return ref.orderBy('lastName', 'asc');
     });
     this.personal = this.personalCollection.valueChanges();

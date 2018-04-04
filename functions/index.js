@@ -3,13 +3,14 @@ const functions = require('firebase-functions');
 
 // The Firebase Admin SDK to access the Firebase Realtime Database.
 const admin = require('firebase-admin');
-admin.initializeApp(functions.config().firebase);
+admin.initializeApp();
 
 const db = admin.firestore();
 
-exports.createUserAccout = functions.auth.user().onCreate(event => {
-  const uid = event.data.uid;
-  const email = event.data.email;
+exports.createUserAccout = functions.auth.user().onCreate((user, context) => {
+
+  const uid = user.uid;
+  const email = user.email;
   const data = {
     email: email,
     uid: uid,
@@ -27,6 +28,7 @@ exports.createUserAccout = functions.auth.user().onCreate(event => {
 });
 
 exports.toggle = functions.https.onRequest((req, res) => {
+
   let rfid = req.query.rfid;
   const kameradenRef = db.collection('Kameraden');
   const kameradDoc = kameradenRef.doc(rfid).get();

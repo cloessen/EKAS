@@ -18,8 +18,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UIService } from './shared/ui.service';
 import { AuthGuard } from './shared/auth-guard.service';
 import { AdminGuard } from './shared/admin-guard.service';
-
-
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducer} from './app.reducer';
 
 
 @NgModule({
@@ -38,7 +39,12 @@ import { AdminGuard } from './shared/admin-guard.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    StoreModule.forRoot({ui: appReducer}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production // Restrict extension to log-only mode
+    })
   ],
   providers: [FirestoreService, AuthService, AdminGuard, AuthGuard, UIService],
   bootstrap: [AppComponent]

@@ -13,8 +13,9 @@ export class UserService {
   uid: string;
 
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
-    this.afAuth.authState.subscribe(x => this.uid = x.uid);
+    this.afAuth.authState.subscribe(user => user ? this.uid = user.uid : this.uid = null );
   }
+
 
   getCurrentFF(): Observable<string> {
     this.usersCollection = this.afs.collection<User>('Users', (ref) => {

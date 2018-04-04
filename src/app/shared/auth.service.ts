@@ -5,6 +5,8 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
 import { UserService } from './user.service';
+import { Store } from '@ngrx/store';
+import { State } from '../app.reducer';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +15,10 @@ export class AuthService {
   public users: Observable<User[]>;
 
 
-  constructor(public afAuth: AngularFireAuth, public afs: AngularFirestore, private userService: UserService) {}
+  constructor(public afAuth: AngularFireAuth,
+              public afs: AngularFirestore,
+              private userService: UserService,
+              private store: Store<{ui: State}>) {}
 
   public getAuthState() {
     return this.afAuth.authState;
@@ -34,8 +39,15 @@ export class AuthService {
   }
 
   public login(email, password) {
+    this.store.dispatch({type: 'START_LOADING'});
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .catch((err) =>  err);
+      .then(() => {
+        this.store.dispatch({type: 'STOP_LOADING'});
+      })
+      .catch((err) =>  {
+        this.store.dispatch({type: 'STOP_LOADING'});
+        return err;
+      });
   }
 
   public logout() {
