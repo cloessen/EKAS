@@ -7,7 +7,7 @@
   "homepage": "https://anwesenheit-ff.firebaseapp.com/",
   "private": true,
   "scripts": {
-    "electron": "ng build --prod && electron .",
+    "electron": "electron .",
     "packager": "electron-packager . EKAS-App"
   },
   "keywords": [

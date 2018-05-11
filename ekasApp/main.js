@@ -5,8 +5,8 @@ const {app, BrowserWindow, Menu} = require('electron');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
-let newPersonalWindow;
-let editPersonalWindow;
+// let newPersonalWindow;
+// let editPersonalWindow;
 
 const URL = 'http://localhost:4200';
 
@@ -24,39 +24,43 @@ function createWindows () {
   // Open the DevTools.
   // win.webContents.openDevTools()
 
+
+  // const menu = Menu.buildFromTemplate(template);
+  const menu = null;
+  Menu.setApplicationMenu(menu);
 }
 
-function createNewPersonalWindow(){
-  newPersonalWindow = new BrowserWindow({
-    width:1200,
-    height:800,
-    parent:mainWindow,
-    modal:true,
-    show:false,
-    center:true,
-    alwaysOnTop:true,
-    backgroundColor: '#868e96'
-
-  });
-  newPersonalWindow.loadURL(URL + '/newPersonal');
-  newPersonalWindow.show();
-}
-
-function createEditPersonalWindow(){
-  editPersonalWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    parent: mainWindow,
-    modal: true,
-    show: false,
-    center: true,
-    alwaysOnTop: true,
-    backgroundColor: '#868e96'
-
-  });
-  editPersonalWindow.loadURL(URL + '/editPersonal');
-  editPersonalWindow.show();
-}
+// function createNewPersonalWindow(){
+//   newPersonalWindow = new BrowserWindow({
+//     width:1200,
+//     height:800,
+//     parent:mainWindow,
+//     modal:true,
+//     show:false,
+//     center:true,
+//     alwaysOnTop:true,
+//     backgroundColor: '#868e96'
+//
+//   });
+//   newPersonalWindow.loadURL(URL + '/newPersonal');
+//   newPersonalWindow.show();
+// }
+//
+// function createEditPersonalWindow(){
+//   editPersonalWindow = new BrowserWindow({
+//     width: 1200,
+//     height: 800,
+//     parent: mainWindow,
+//     modal: true,
+//     show: false,
+//     center: true,
+//     alwaysOnTop: true,
+//     backgroundColor: '#868e96'
+//
+//   });
+//   editPersonalWindow.loadURL(URL + '/editPersonal');
+//   editPersonalWindow.show();
+// }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -82,46 +86,44 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-const template = [
-  {
-    label: 'Navivgation',
-    submenu: [
-      {
-        label: 'Übersicht',
-        click() {mainWindow.loadURL(URL)}
-        }
-      ]
-  },
-  {
-    label: 'Kameraden',
-    submenu: [
-      {
-        label: 'hinzufügen',
-        click() { createNewPersonalWindow() }
-        },
-      {
-        label: 'ansehen/bearbeiten',
-        click() { createEditPersonalWindow() }
-      }
-      ]
-  },
-  {
-    role: 'window',
-    submenu: [
-      {role: 'toggledevtools'},
-      {role: 'minimize'},
-      {role: 'close'}
-    ]
-  },
-  {
-    role: 'help',
-    submenu: [
-      {
-        label: 'Learn More',
-        // click () { require('electron').shell.openExternal('https://electron.atom.io') }
-      }
-    ]
-  }
-];
-const menu = Menu.buildFromTemplate(template);
-Menu.setApplicationMenu(menu);
+// const template = [
+//   {
+//     label: 'Navivgation',
+//     submenu: [
+//       {
+//         label: 'Übersicht',
+//         click() {mainWindow.loadURL(URL)}
+//         }
+//       ]
+//   },
+//   {
+//     label: 'Kameraden',
+//     submenu: [
+//       {
+//         label: 'hinzufügen',
+//         click() { createNewPersonalWindow() }
+//         },
+//       {
+//         label: 'ansehen/bearbeiten',
+//         click() { createEditPersonalWindow() }
+//       }
+//       ]
+//   },
+//   {
+//     role: 'window',
+//     submenu: [
+//       {role: 'toggledevtools'},
+//       {role: 'minimize'},
+//       {role: 'close'}
+//     ]
+//   },
+//   {
+//     role: 'help',
+//     submenu: [
+//       {
+//         label: 'Learn More',
+//         // click () { require('electron').shell.openExternal('https://electron.atom.io') }
+//       }
+//     ]
+//   }
+// ];
