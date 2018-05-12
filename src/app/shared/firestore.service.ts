@@ -3,15 +3,19 @@ import { AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firest
 import { Kamerad } from './interfaces';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from './user.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class FirestoreService {
+
+  public currentFF$ = new Subject();
 
   private kameradenCollection: AngularFirestoreCollection<Kamerad>;
   kameraden: Observable<Kamerad[]>;
   private personalCollection: AngularFirestoreCollection<Kamerad>;
   personal: Observable<Kamerad[]>;
-  currentFF: string;
+
 
   constructor(private afs: AngularFirestore, private userService: UserService) {
     // this.userService.getCurrentFF().subscribe(feuerwehr => this.currentFF = feuerwehr);

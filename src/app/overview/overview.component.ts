@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Kamerad, Overview } from '../shared/interfaces';
 import { FirestoreService } from '../shared/firestore.service';
 import { Subscription } from 'rxjs/Subscription';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-overview',
@@ -21,7 +23,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public personalSubscription: Subscription;
   public komplettesPersonal: Kamerad[];
 
-  constructor(private afs: FirestoreService,  private http: HttpClient) { }
+  constructor(
+    private afs: FirestoreService,
+    private http: HttpClient,
+    private route: ActivatedRoute) { }
 
 
 
@@ -65,6 +70,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.personalSubscription = this.afs.getPersonal().subscribe((data) => {
       this.komplettesPersonal = data;
     });
+    this.route.params.subscribe(params => console.log(params));
   }
   ngOnDestroy() {
     this.kameradenSubscription.unsubscribe();

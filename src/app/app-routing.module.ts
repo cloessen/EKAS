@@ -21,6 +21,9 @@ const routes: Routes = [
     // canLoad: [AdminGuard],
   },
   {
+    path: ':ff', component: OverviewComponent
+  },
+  {
     path: '**', redirectTo: ''
   },
 
