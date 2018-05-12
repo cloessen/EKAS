@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Kamerad, Overview } from '../shared/interfaces';
 import { FirestoreService } from '../shared/firestore.service';
 import { Subscription } from 'rxjs/Subscription';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-overview',
@@ -17,8 +18,12 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public zf: Kamerad[];
   public owf: Kamerad[];
   public gwf: Kamerad[];
+  public personalSubscription: Subscription;
+  public komplettesPersonal: Kamerad[];
 
-  constructor(private afs: FirestoreService) { }
+  constructor(private afs: FirestoreService,  private http: HttpClient) { }
+
+
 
   calculateFunktionen(data: Kamerad[]) {
     this.gwf = [];
@@ -57,8 +62,22 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.calculateFunktionen(data);
         this.finishedLoading = true;
     });
+    this.personalSubscription = this.afs.getPersonal().subscribe((data) => {
+      this.komplettesPersonal = data;
+    });
   }
   ngOnDestroy() {
     this.kameradenSubscription.unsubscribe();
+  }
+
+
+  toggleAnwesenheit(rfid) {
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type':  'application/json'
+    //   })
+    // };
+    // this.http.post(`https://us-central1-anwesenheit-ff.cloudfunctions.net/toggle?rfid=${rfid}`, null, httpOptions).subscribe();
+    this.http.get(`https://us-central1-anwesenheit-ff.cloudfunctions.net/toggle?rfid=${rfid}`).subscribe();
   }
 }

@@ -140,4 +140,11 @@
   <!--</mat-grid-tile>-->
   <!--</mat-grid-list>-->
   <!-- / ALLE KAMERADEN AUSSER GWF / OWF / ZF-->
+
+
+</div>
+<div *ngIf="finishedLoading" style="position: absolute; bottom: 100px">
+  <h3>Alle Kameraden</h3>
+  <p> wirklich nur zum testen.... Es kann ein paar Sekunden dauern bis sich die Anzeige Ändert, gerade beim ersten klick</p>
+  <button matTooltip="Es kann ein paar Sekunden dauern bis sich die Anzeige Ändert!" matTooltipPosition="above" mat-raised-button color="primary" style="margin: 3px;" *ngFor="let person of komplettesPersonal" (click)="toggleAnwesenheit(person.rfid)">{{person.lastName}}, {{person.firstName}}</button>
 </div>

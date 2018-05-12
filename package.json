@@ -1,7 +1,7 @@
 {
   "name": "ekas",
   "productName": "EKAS - Einsatz Kräfte Anzeige System",
-  "version": "0.2.3",
+  "version": "0.3.1",
   "license": "MIT",
   "homepage": "https://anwesenheit-ff.firebaseapp.com/",
   "scripts": {

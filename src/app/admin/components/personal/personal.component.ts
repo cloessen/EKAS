@@ -28,11 +28,13 @@ export class PersonalComponent implements OnInit, OnDestroy {
   ];
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
-  constructor(private firebase: FirestoreService, private matDialog: MatDialog, private UI: UIService) { }
+  constructor(private afs: FirestoreService, private matDialog: MatDialog, private UI: UIService) { }
 
   ngOnInit() {
     this.UI.isLoading$.next(true);
-    this.personalSubscription = this.firebase.getPersonal().subscribe((data) => {
+    console.log('start loading...')
+    this.personalSubscription = this.afs.getPersonal().subscribe((data) => {
+      console.log('finished loading...');
       this.UI.isLoading$.next(false);
       this.rows = data;
       this.temp = [...data];
