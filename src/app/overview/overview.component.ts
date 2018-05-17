@@ -3,7 +3,10 @@ import { Kamerad, Overview } from '../shared/interfaces';
 import { FirestoreService } from '../shared/firestore.service';
 import { Subscription } from 'rxjs/Subscription';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import * as fromRoot from '../app.reducer';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/index';
+
 
 
 @Component({
@@ -17,16 +20,18 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public finishedLoading = false;
   public overview: Overview;
   public kameraden: Kamerad[];
+  // public kameraden: Observable<Kamerad[]>;
   public zf: Kamerad[];
   public owf: Kamerad[];
   public gwf: Kamerad[];
   public personalSubscription: Subscription;
   public komplettesPersonal: Kamerad[];
 
+
   constructor(
     private afs: FirestoreService,
     private http: HttpClient,
-    private route: ActivatedRoute) { }
+    private _store: Store<fromRoot.State> ) { }
 
 
 
@@ -44,46 +49,46 @@ export class OverviewComponent implements OnInit, OnDestroy {
         }
       }
       if (kamerad.funktionen.owf) {
-        // let index = data.indexOf(kamerad);
         this.owf.push(kamerad);
       }
       if (kamerad.funktionen.gwf) {
-        // let index = data.indexOf(kamerad);
         this.gwf.push(kamerad);
       }
       if (kamerad.funktionen.ZF) {
-        // let index = data.indexOf(kamerad);
         this.zf.push(kamerad);
       }
     });
     // remove ZF & OWF & GWF from kameraden[]
-    this.zf.forEach((kamerad) => this.kameraden.splice(this.kameraden.indexOf(kamerad), 1));
-    this.owf.forEach((kamerad) => this.kameraden.splice(this.kameraden.indexOf(kamerad), 1));
-    this.gwf.forEach((kamerad) => this.kameraden.splice(this.kameraden.indexOf(kamerad), 1));
+    this.zf.forEach((kamerad) => data.splice(this.kameraden.indexOf(kamerad), 1));
+    this.owf.forEach((kamerad) => data.splice(this.kameraden.indexOf(kamerad), 1));
+    this.gwf.forEach((kamerad) => data.splice(this.kameraden.indexOf(kamerad), 1));
+    return data;
   }
   ngOnInit() {
-    this.kameradenSubscription = this.afs.getKameraden().subscribe((data) => {
-        this.kameraden = data;
-        this.calculateFunktionen(data);
+    this.kameradenSubscription = this._store.select(fromRoot.getAnwesendeKameraden).subscribe((kameraden: Kamerad[]) => {
+        // this.kameraden = kameraden;
+        // this.calculateFunktionen(kameraden);
+      this.kameraden = this.calculateFunktionen(kameraden);
+      console.log('kameraden ... ', this.kameraden);
         this.finishedLoading = true;
     });
-    this.personalSubscription = this.afs.getPersonal().subscribe((data) => {
-      this.komplettesPersonal = data;
+    // this.kameraden = this._store.select(fromRoot.getAnwesendeKameraden);
+    this.personalSubscription = this._store.select(fromRoot.getAlleKameraden).subscribe((kameraden: Kamerad[]) => {
+      this.komplettesPersonal = kameraden;
     });
-    this.route.params.subscribe(params => console.log(params));
+
   }
   ngOnDestroy() {
     this.kameradenSubscription.unsubscribe();
+    this.personalSubscription.unsubscribe();
+
   }
 
 
   toggleAnwesenheit(rfid) {
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type':  'application/json'
-    //   })
-    // };
-    // this.http.post(`https://us-central1-anwesenheit-ff.cloudfunctions.net/toggle?rfid=${rfid}`, null, httpOptions).subscribe();
-    this.http.get(`https://us-central1-anwesenheit-ff.cloudfunctions.net/toggle?rfid=${rfid}`).subscribe();
+    const response = this.http.get(`https://us-central1-anwesenheit-ff.cloudfunctions.net/toggle?rfid=${rfid}`).toPromise();
+    response
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   }
 }

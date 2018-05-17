@@ -35,14 +35,15 @@ exports.createUserAccout = functions.auth.user().onCreate((user, context) => {
 exports.toggle = functions.https.onRequest((req, res) => {
 
   // Automatically allow cross-origin requests
-  cors(req, res, () => {});
-  let rfid = req.query.rfid;
-  const kameradenRef = db.collection('Kameraden');
-  const kameradDoc = kameradenRef.doc(rfid).get();
-  return kameradDoc.then((doc) => {
-    const toggle = doc.data().anwesend;
-    return doc.ref.set({anwesend: !toggle}, {merge: true});
-  })
-    .then(() => res.sendStatus(200))
-    .catch(() => res.send(`No Entry found with rfid: ${rfid}`));
+  return cors(req, res, () => {
+    let rfid = req.query.rfid;
+    const kameradenRef = db.collection('Kameraden');
+    const kameradDoc = kameradenRef.doc(rfid).get();
+    return kameradDoc.then((doc) => {
+      const toggle = doc.data().anwesend;
+      return doc.ref.set({anwesend: !toggle}, {merge: true});
+    })
+      .then(() => res.sendStatus(200))
+      .catch(() => res.sendStatus(404));
+  });
 });

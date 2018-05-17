@@ -8,6 +8,9 @@ import { KameradFormComponent } from '../kamerad-form/kamerad-form.component';
 import { NewKameradFormComponent } from '../new-kamerad-form/new-kamerad-form.component';
 import { UIService } from '../../../shared/ui.service';
 import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../../app.reducer';
+import * as UI from '../../../Store/UI/ui.actions';
 
 @Component({
   selector: 'app-personal',
@@ -17,7 +20,7 @@ import { Observable } from 'rxjs/Observable';
 export class PersonalComponent implements OnInit, OnDestroy {
 
   public personalSubscription: Subscription;
-  public isLoading$: Observable<boolean> = this.UI.isLoading$;
+  isLoading$: Observable<boolean>;
   rows: Kamerad[] = [];
   temp: Kamerad[] = [];
   selected = [];
@@ -28,14 +31,21 @@ export class PersonalComponent implements OnInit, OnDestroy {
   ];
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
-  constructor(private afs: FirestoreService, private matDialog: MatDialog, private UI: UIService) { }
+  constructor(
+    private afs: FirestoreService,
+    private matDialog: MatDialog,
+    // private UI: UIService,
+    private store: Store<fromRoot.State>) { }
 
   ngOnInit() {
-    this.UI.isLoading$.next(true);
-    console.log('start loading...')
+    // this.UI.isLoading$.next(true);
+    this.isLoading$ = this.store.select(fromRoot.getIsLoading);
+    this.store.dispatch(new UI.StartLoading);
+    console.log('start loading...');
     this.personalSubscription = this.afs.getPersonal().subscribe((data) => {
       console.log('finished loading...');
-      this.UI.isLoading$.next(false);
+      this.store.dispatch(new UI.StopLoading);
+      // this.UI.isLoading$.next(false);
       this.rows = data;
       this.temp = [...data];
       this.selected[0] = this.temp[0];

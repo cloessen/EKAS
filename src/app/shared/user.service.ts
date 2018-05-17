@@ -12,7 +12,8 @@ export class UserService {
   // uid = firebase.auth().currentUser.uid;
   uid: string;
 
-  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
+  constructor(private afs: AngularFirestore,
+              private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => user ? this.uid = user.uid : this.uid = null );
   }
 

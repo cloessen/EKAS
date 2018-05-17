@@ -1,22 +1,28 @@
+import * as fromUI from './Store/UI/ui.reducer';
+import * as fromBasic from './Store/Basic/basic.reducer';
+import * as fromKameraden from './Store/Kameraden/kameraden.reducer';
+
+import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+
 export interface State {
-  isLoading: boolean;
+  ui: fromUI.State;
+  basic: fromBasic.State;
+  kameraden: fromKameraden.State;
 }
 
-const initialState: State = {
-  isLoading: false
+export const reducers: ActionReducerMap<State> = {
+  ui: fromUI.uiReducer,
+  basic: fromBasic.basicReducer,
+  kameraden: fromKameraden.kameradenReducer
 };
 
-export function appReducer(state = initialState, action) {
-  switch (action.type) {
-    case 'START_LOADING':
-      return {
-        isLoading: true
-      };
-    case  'STOP_LOADING':
-      return {
-        isLoading: false
-      };
-    default:
-      return state;
-  }
-}
+export const getUiState = createFeatureSelector<fromUI.State>('ui');
+export const getIsLoading = createSelector(getUiState, fromUI.getIsLoading);
+
+export const getBasicState = createFeatureSelector<fromBasic.State>('basic');
+export const getCurrentFF = createSelector(getBasicState, fromBasic.getCurrentFF);
+
+export const getKameradenState = createFeatureSelector<fromKameraden.State>('kameraden');
+export const getAlleKameraden = createSelector(getKameradenState, fromKameraden.getAlleKameraden);
+export const getAnwesendeKameraden = createSelector(getKameradenState, fromKameraden.getanwesendeKameraden);
+

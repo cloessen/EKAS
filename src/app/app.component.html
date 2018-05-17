@@ -7,19 +7,19 @@
 </div>
 <!--<button class="btn btn-primary-outline" (click)="state == 'noError' ? state = 'error' : state = 'noError'" >toggle Error</button>-->
 
+<router-outlet></router-outlet>
+<!--<ng-container *ngIf="authState$ | async; else showLogin">-->
+  <!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+  <!--&lt;!&ndash;<mat-toolbar style="justify-content: center;">&ndash;&gt;-->
+    <!--<app-header></app-header>-->
+  <!--&lt;!&ndash;</mat-toolbar>&ndash;&gt;-->
+  <!--<div style="padding-top: 10px">-->
+    <!--<router-outlet></router-outlet>-->
+  <!--</div>-->
+<!--</ng-container>-->
 
-<ng-container *ngIf="authState$ | async; else showLogin">
+<!--<ng-template #showLogin>-->
   <!--<div class="container">-->
-  <!--<mat-toolbar style="justify-content: center;">-->
-    <app-header></app-header>
-  <!--</mat-toolbar>-->
-  <div style="padding-top: 10px">
-    <router-outlet></router-outlet>
-  </div>
-</ng-container>
-
-<ng-template #showLogin>
-  <div class="container">
-    <app-login></app-login>
-  </div>
-</ng-template>
+    <!--<app-login></app-login>-->
+  <!--</div>-->
+<!--</ng-template>-->

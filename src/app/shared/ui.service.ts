@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class UIService {
 
   public isLoading$ = new BehaviorSubject(false);
+  public currentFF$ = new BehaviorSubject(null);
 
   constructor(public snackBar: MatSnackBar) {}
 
