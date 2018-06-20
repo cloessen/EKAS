@@ -4,24 +4,26 @@ import { OverviewComponent } from './overview/overview.component';
 
 import { LoginComponent } from './shared/components/login/login.component';
 import { AdminGuard } from './shared/admin-guard.service';
+import { LayoutComponent } from './layout/layout.component';
 
 
 
 const routes: Routes = [
   {
-    path: '', component: OverviewComponent
-  },
-  {
-    path: 'login', component: LoginComponent
-  },
-  {
-    path: 'admin',
-    loadChildren: './admin/admin.module#AdminModule',
-    // TODO: rewrite for production!!!!!!!!!!
-    // canLoad: [AdminGuard],
-  },
-  {
-    path: ':ff', component: OverviewComponent
+    path: ':ff', component: LayoutComponent,
+    children: [
+      {
+      path: '', component: OverviewComponent
+      },
+      {
+        path: 'login', component: LoginComponent
+      },
+      {
+        path: 'admin',
+        loadChildren: './admin/admin.module#AdminModule',
+        // TODO: rewrite for production!!!!!!!!!!
+        // canLoad: [AdminGuard],
+      }]
   },
   {
     path: '**', redirectTo: ''

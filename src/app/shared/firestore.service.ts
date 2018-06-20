@@ -3,37 +3,45 @@ import { AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firest
 import { Kamerad } from './interfaces';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from './user.service';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../app.reducer';
+import { SetAlleKameraden, SetAnwesendeKameraden } from '../Store/Kameraden/kameraden.actions';
 
 @Injectable()
 export class FirestoreService {
 
-  public currentFF$ = new Subject();
-
-  private kameradenCollection: AngularFirestoreCollection<Kamerad>;
+  private anwesendeKameradenCollection: AngularFirestoreCollection<Kamerad>;
+  private alleKameradenCollection: AngularFirestoreCollection<Kamerad>;
   kameraden: Observable<Kamerad[]>;
   private personalCollection: AngularFirestoreCollection<Kamerad>;
   personal: Observable<Kamerad[]>;
 
 
-  constructor(private afs: AngularFirestore, private userService: UserService) {
-    // this.userService.getCurrentFF().subscribe(feuerwehr => this.currentFF = feuerwehr);
-    // console.log(this.currentFF);
-    this.kameradenCollection = afs.collection<Kamerad>('Kameraden', (ref) => {
+  constructor(private _afs: AngularFirestore,
+              private userService: UserService,
+              private _store: Store<fromRoot.State>) {
+    this.anwesendeKameradenCollection = _afs.collection<Kamerad>('Kameraden', (ref) => {
       return ref.orderBy('lastName', 'asc')
         .where('anwesend', '==', true);
     });
-    this.kameraden = this.kameradenCollection.valueChanges();
+    // this.kameraden = this.kameradenCollection.valueChanges();
+    this.anwesendeKameradenCollection.valueChanges().subscribe((kameraden: Kamerad[]) => this._store.dispatch(new SetAnwesendeKameraden(kameraden)));
 
-    this.personalCollection = afs.collection<Kamerad>('Kameraden', (ref) => {
-      return ref.orderBy('lastName', 'asc');
+
+    this.alleKameradenCollection = _afs.collection<Kamerad>('Kameraden', (ref) => {
+      return ref.orderBy('lastName', 'asc')
     });
-    this.personal = this.personalCollection.valueChanges();
+    // this.kameraden = this.kameradenCollection.valueChanges();
+    this.alleKameradenCollection.valueChanges().subscribe(kameraden => this._store.dispatch(new SetAlleKameraden(kameraden)));
+
+    // this.personalCollection = _afs.collection<Kamerad>('Kameraden', (ref) => {
+    //   return ref.orderBy('lastName', 'asc');
+    // });
+    // this.personal = this.personalCollection.valueChanges();
   }
 
   deleteKamerad(kamerad: Kamerad) {
-    return this.kameradenCollection.doc(kamerad.rfid).delete();
+    return this.anwesendeKameradenCollection.doc(kamerad.rfid).delete();
   }
 
 
@@ -45,11 +53,11 @@ export class FirestoreService {
   }
 
   saveNewKamerad(kamerad: Kamerad) {
-    return this.kameradenCollection.doc(kamerad.rfid).set(kamerad);
+    return this.anwesendeKameradenCollection.doc(kamerad.rfid).set(kamerad);
 
   }
   updateKamerad(kamerad: Kamerad) {
-    return this.kameradenCollection.doc(kamerad.rfid).update(kamerad);
+    return this.anwesendeKameradenCollection.doc(kamerad.rfid).update(kamerad);
 
   }
 

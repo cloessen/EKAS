@@ -1,6 +1,7 @@
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -11,7 +12,7 @@ export class AuthGuard implements CanActivate {
     if (!this.authService.getAuthState()) {
       return false;
     } else {
-      return this.authService.getAuthState().map(data => !!data.uid);
+      return this.authService.getAuthState().pipe(map(data => !!data.uid));
     }
   }
 }

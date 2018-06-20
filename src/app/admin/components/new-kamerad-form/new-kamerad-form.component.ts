@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Kamerad } from '../../../shared/interfaces';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirestoreService } from '../../../shared/firestore.service';
+import { KameradenService } from '../../../shared/kameraden.service';
 import { UIService } from '../../../shared/ui.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { KameradFormComponent } from '../kamerad-form/kamerad-form.component';
+// import { KameradFormComponent } from '../kamerad-form/kamerad-form.component';
 
 @Component({
   selector: 'app-new-kamerad-form',
@@ -13,7 +13,7 @@ import { KameradFormComponent } from '../kamerad-form/kamerad-form.component';
 })
 export class NewKameradFormComponent implements OnInit {
 
-  public isLoading$ = this.UI.isLoading$;
+  public isLoading$ = this._UI.isLoading$;
 
   newKameradForm = new FormGroup({
     lastName: new FormControl(null , Validators.required),
@@ -61,8 +61,8 @@ export class NewKameradFormComponent implements OnInit {
   }
 
 
-  constructor(private UI: UIService,
-              private firebase: FirestoreService,
+  constructor(private _UI: UIService,
+              private firebase: KameradenService,
               @Inject(MAT_DIALOG_DATA) public data: Kamerad,
               public dialogRef: MatDialogRef<NewKameradFormComponent>) { }
 
@@ -70,11 +70,11 @@ export class NewKameradFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.UI.isLoading$.next(true);
+    this._UI.isLoading$.next(true);
     this.dialogRef.close();
     const newKamerad: Kamerad = this.newKameradForm.value;
     newKamerad.anwesend = false;
-      for (let x in newKamerad.funktionen) {
+      for (const x in newKamerad.funktionen) {
         if (!newKamerad.funktionen[x]) {
           newKamerad.funktionen[x] = false;
         }
@@ -93,12 +93,12 @@ export class NewKameradFormComponent implements OnInit {
       }
     this.firebase.saveNewKamerad(newKamerad)
       .then(() => {
-        this.UI.isLoading$.next(false);
-        this.UI.showSnackBar('Neuer Kamerad erfolgreich gespeichert', 2500);
+        this._UI.isLoading$.next(false);
+        this._UI.showSnackBar('Neuer Kamerad erfolgreich gespeichert', 2500);
       })
       .catch((error) => {
-        this.UI.isLoading$.next(false);
-        this.UI.showSnackBar(error.message, 3000);
+        this._UI.isLoading$.next(false);
+        this._UI.showSnackBar(error.message, 3000);
       });
   }
 
@@ -126,7 +126,8 @@ export class NewKameradFormComponent implements OnInit {
         break;
       default:
         console.log('Dieser Fall sollte nicht auftreten! FEHLER CODE 0001');
-        this.UI.showSnackBar(`Ein schwerer Fehler ist aufgereten! Bitte schicke eine E-mail mit Informationen zum Ablauf und dem Fehlercode: 0001 an: s.claussen@me.com`, 10000);
+        this._UI.showSnackBar(`Ein schwerer Fehler ist aufgereten!
+        Bitte schicke eine E-mail mit Informationen zum Ablauf und dem Fehlercode: 0001 an: admin@ekas.app`, 10000);
     }
   }
   onCancel() {

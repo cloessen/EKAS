@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Kamerad } from '../../../shared/interfaces';
-import { FirestoreService } from '../../../shared/firestore.service';
+import { KameradenService } from '../../../shared/kameraden.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { UIService } from '../../../shared/ui.service';
 
@@ -21,7 +21,7 @@ export class KameradFormComponent implements OnInit {
 
   constructor(
     private UI: UIService,
-    private firebase: FirestoreService,
+    private firebase: KameradenService,
     @Inject(MAT_DIALOG_DATA) public data: Kamerad,
     public dialogRef: MatDialogRef<KameradFormComponent>) {
   }
