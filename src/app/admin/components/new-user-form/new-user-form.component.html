@@ -1,0 +1,141 @@
+<form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
+  <!-- Ausgabe Name, Vorname und RFID -->
+  <div class="grid-container">
+    <div class="info bg-lg">
+      <mat-form-field >
+        <input matInput #inputName required id="inputName" placeholder="Nachname" formControlName="lastName" name="lastName" class="full-width">
+        <span matSuffix><i class="far fa-edit"></i></span>
+        <!--<mat-error *ngIf="newKameradForm.lastName.hasError.invalid()">Nachname darf nicht leer sein!</mat-error>-->
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput #inputFirstName required id="inputFirstName" placeholder="Vorname" formControlName="firstName" class="full-width">
+        <span matSuffix><i class="far fa-edit"></i></span>
+        <!--<mat-error *ngIf="inputFirstName.value == ''">Vorname darf nicht leer sein!</mat-error>-->
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput id="inputRfid" formControlName="rfid" class="full-width">
+      </mat-form-field>
+    </div>
+    <!-- / Ausgabe Name, Vorname und RFID -->
+    <!-- Ausgabe der Funktionen -->
+    <div formGroupName="funktionen" class="grid-functions bg-lg">
+      <div class="func1">
+        <p>
+          <label>
+            <mat-checkbox formControlName="PA" color="primary"> Atemschutz <i
+              class="fas fa-tachometer-alt fa-lg"></i>
+            </mat-checkbox>
+          </label>
+        </p>
+        <p>
+          <label>
+            <mat-checkbox formControlName="CE" color="primary"> Maschinist C/CE <i
+              class="fas fa-truck fa-lg"></i>
+            </mat-checkbox>
+          </label>
+        </p>
+        <p>
+          <label>
+            <mat-checkbox formControlName="saw"  color="primary"> Kettensägenführer <i
+              class="fas fa-tree fa-lg"></i>
+            </mat-checkbox>
+          </label>
+        </p>
+        <p>
+          <label>
+            <mat-checkbox formControlName="gsg"  color="primary"> Gefahrgut <i
+              class="fas fa-universal-access fa-lg"></i>
+            </mat-checkbox>
+          </label>
+        </p>
+      </div>
+      <div class="func2">
+        <p>
+          <label>
+            <mat-checkbox formControlName="eva"  color="primary"> EFA-Gruppe <i
+              class="fas fa-laptop fa-lg"></i>
+            </mat-checkbox>
+          </label>
+        </p>
+        <p>
+          <label>
+            <mat-checkbox formControlName="log"  color="primary"> Logistik-Gruppe <i
+              class="fas fa-clipboard fa-lg"></i>
+            </mat-checkbox>
+          </label>
+        </p>
+        <p>
+          <label>
+            <mat-checkbox formControlName="NS" color="primary"> Notstrom-Gruppe <i
+              class="fas fa-plug fa-lg"></i>
+            </mat-checkbox>
+          </label>
+        </p>
+        <p>
+          <label>
+            <mat-checkbox formControlName="RS" color="primary"> NotSan / RettAss / RettSan <i
+              class="fas fa-medkit fa-lg"></i>
+            </mat-checkbox>
+          </label>
+        </p>
+      </div>
+      <div class="func3">
+        <p>
+          <label>
+            <mat-checkbox
+              #gfCheckbox
+              formControlName="GF"
+              (change)="checkDisables($event)"
+              name="GF"
+              color="primary"> Gruppenführung
+            </mat-checkbox>
+          </label>
+        </p>
+        <p>
+          <label>
+            <mat-checkbox
+              #zfCheckbox
+              formControlName="ZF"
+              (change)="checkDisables($event)"
+              name="ZF"
+              color="primary"> Zugführung
+            </mat-checkbox>
+          </label>
+        </p>
+        <p>
+          <label>
+            <mat-checkbox
+              #owfCheckbox
+              formControlName="owf"
+              (change)="checkDisables($event)"
+              name="owf"
+              color="primary">
+              Ortswehrführung
+            </mat-checkbox>
+          </label>
+        </p>
+        <p>
+          <label>
+            <mat-checkbox
+              #gwfCheckbox
+              formControlName="gwf"
+              name="gwf"
+              (change)="checkDisables($event)"
+              color="primary">
+              Gemeindewehrführung
+            </mat-checkbox>
+          </label>
+        </p>
+      </div>
+    </div>
+    <div class="buttons bg-lg">
+      <button mat-raised-button
+              color="primary"
+              type="submit">Speichern</button>
+      <button mat-raised-button
+              color="accent"
+              type="button"
+              (click)="onCancel()">Abbrechen</button>
+    </div>
+  </div>
+</form>
