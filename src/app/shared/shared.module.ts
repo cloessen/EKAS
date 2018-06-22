@@ -7,6 +7,7 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserService } from './user.service';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { UserService } from './user.service';
     CommonModule,
     MaterialModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    RouterModule
   ],
   declarations: [
     JaneinPipe,
@@ -25,7 +27,11 @@ import { UserService } from './user.service';
     JaneinPipe,
     AlertTopComponent,
     LoginComponent,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MaterialModule,
+    FormsModule,
+    CommonModule,
+    RouterModule
   ],
   providers: [UserService]
 })

@@ -4,19 +4,21 @@ export interface Kamerad {
   anwesend: boolean;
   rfid: string;
   id?: string;
-  funktionen: {
-    GF: boolean,
-    ZF: boolean,
-    CE: boolean,
-    PA: boolean,
-    saw: boolean,
-    gsg: boolean,
-    eva: boolean,
-    log: boolean,
-    RS: boolean,
-    NS: boolean,
-    owf: boolean,
-    gwf: boolean
+  check1?: boolean;
+  check2?: boolean;
+  funktionen?: {
+    GF?: boolean,
+    ZF?: boolean,
+    CE?: boolean,
+    PA?: boolean,
+    saw?: boolean,
+    gsg?: boolean,
+    eva?: boolean,
+    log?: boolean,
+    RS?: boolean,
+    NS?: boolean,
+    owf?: boolean,
+    gwf?: boolean
   };
 }
 export interface User {
