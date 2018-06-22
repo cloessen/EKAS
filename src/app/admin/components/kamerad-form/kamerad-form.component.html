@@ -19,14 +19,11 @@
         <mat-form-field >
           <input disabled matInput id="inputRfid" [(ngModel)]="kamerad.rfid" name="rfidRef" class="full-width" tabindex="-1">
           <!--<span matSuffix>-->
-            <span matSuffix class="fa-layers fa-fw">
-            <i class="fas fa-circle" style="color:Tomato"></i>
-            <i class="fa-inverse fas fa-times" data-fa-transform="shrink-6"></i>
-            </span>
+            <i matSuffix class="fas fa-times-circle" style="color: red"></i>
           <!--</span>-->
           <mat-hint>
             <span matTooltip="Zum ändern der RFID muss der Kamerad neu angelegt werden">
-              RFID kann nicht geändert werden!*
+              kann nicht geändert werden!*
             </span>
           </mat-hint>
         </mat-form-field>
@@ -168,14 +165,6 @@
         <span class="text-muted">Beide Kästen anlicken um löschen freizugeben!</span>
       </div>
     </div>
-    <!--<button type="button"-->
-            <!--class="closeBtn-top-right"-->
-            <!--mat-mini-fab-->
-            <!--color="primary"-->
-            <!--matTooltip="Schließen, Änderungen verwerfen"-->
-            <!--(click)="onCancel()">-->
-      <!--<mat-icon>close</mat-icon>-->
-    <!--</button>-->
   </form>
 
 </ng-container>

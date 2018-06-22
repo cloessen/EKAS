@@ -4,18 +4,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { KameradenService } from '../../../shared/kameraden.service';
 import { UIService } from '../../../shared/ui.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-// import { KameradFormComponent } from '../kamerad-form/kamerad-form.component';
 
 @Component({
-  selector: 'app-new-kamerad-form',
-  templateUrl: './new-kamerad-form.component.html',
-  styleUrls: ['./new-kamerad-form.component.scss']
+  selector: 'app-new-user-form',
+  templateUrl: './new-user-form.component.html',
+  styleUrls: ['./new-user-form.component.scss']
 })
-export class NewKameradFormComponent implements OnInit {
+export class NewUserFormComponent implements OnInit {
 
   public isLoading$ = this._UI.isLoading$;
 
-  newKameradForm = new FormGroup({
+  newUserForm = new FormGroup({
     lastName: new FormControl(null , Validators.required),
     firstName: new FormControl(null, Validators.required),
     rfid: new FormControl(null, [Validators.required, Validators.pattern(/^\d{3,}$/)]),
@@ -36,16 +35,16 @@ export class NewKameradFormComponent implements OnInit {
 
   });
   get lastName(){
-    return this.newKameradForm.get('lastName');
+    return this.newUserForm.get('lastName');
   }
   get firstName(){
-    return this.newKameradForm.get('firstName');
+    return this.newUserForm.get('firstName');
   }
   get rfid(){
-    return this.newKameradForm.get('rfid');
+    return this.newUserForm.get('rfid');
   }
   get funktionen(){
-    return this.newKameradForm.get('funktionen');
+    return this.newUserForm.get('funktionen');
   }
   get GF(){
     return this.funktionen.get('GF');
@@ -63,34 +62,35 @@ export class NewKameradFormComponent implements OnInit {
 
   constructor(private _UI: UIService,
               private firebase: KameradenService,
-              @Inject(MAT_DIALOG_DATA) public data: Kamerad,
-              public dialogRef: MatDialogRef<NewKameradFormComponent>) { }
+              // @Inject(MAT_DIALOG_DATA) public data: Kamerad,
+              // public dialogRef: MatDialogRef<NewUserFormComponent>
+  ) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
     this._UI.isLoading$.next(true);
-    this.dialogRef.close();
-    const newKamerad: Kamerad = this.newKameradForm.value;
+    // this.dialogRef.close();
+    const newKamerad: Kamerad = this.newUserForm.value;
     newKamerad.anwesend = false;
-      for (const x in newKamerad.funktionen) {
-        if (!newKamerad.funktionen[x]) {
-          newKamerad.funktionen[x] = false;
-        }
+    for (let x in newKamerad.funktionen) {
+      if (!newKamerad.funktionen[x]) {
+        newKamerad.funktionen[x] = false;
       }
-      if (!newKamerad.funktionen.GF) {
-        newKamerad.funktionen.GF = false;
-      }
-      if (!newKamerad.funktionen.ZF) {
-        newKamerad.funktionen.ZF = false;
-      }
-      if (!newKamerad.funktionen.owf) {
-        newKamerad.funktionen.owf = false;
-      }
-      if (!newKamerad.funktionen.gwf) {
-        newKamerad.funktionen.gwf = false;
-      }
+    }
+    if (!newKamerad.funktionen.GF) {
+      newKamerad.funktionen.GF = false;
+    }
+    if (!newKamerad.funktionen.ZF) {
+      newKamerad.funktionen.ZF = false;
+    }
+    if (!newKamerad.funktionen.owf) {
+      newKamerad.funktionen.owf = false;
+    }
+    if (!newKamerad.funktionen.gwf) {
+      newKamerad.funktionen.gwf = false;
+    }
     this.firebase.saveNewKamerad(newKamerad)
       .then(() => {
         this._UI.isLoading$.next(false);
@@ -131,7 +131,7 @@ export class NewKameradFormComponent implements OnInit {
     }
   }
   onCancel() {
-    this.dialogRef.close();
+    // this.dialogRef.close();
   }
 
 }

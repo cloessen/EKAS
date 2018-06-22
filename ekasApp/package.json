@@ -2,22 +2,26 @@
   "name": "ekas-app",
   "version": "0.0.1",
   "productName": "EKAS - Einsatz Kräfte Anzeige System",
-  "description": "Desktop Application for EKAS",
+  "description": "Desktop ekas.app",
   "main": "main.js",
-  "homepage": "https://anwesenheit-ff.firebaseapp.com/",
+  "homepage": "https://ekas.app",
   "private": true,
   "scripts": {
     "electron": "electron .",
-    "packager": "electron-packager . EKAS-App"
+    "packager": "electron-packager . ekas.app"
   },
   "keywords": [
     "electron",
-    "Angular"
+    "Angular",
+    "Feuerwehr",
+    "Einsatz",
+    "Kameraden"
   ],
   "author": "Sebastian Claußen <cloessen@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^1.8.3",
-    "electron-packager": "^10.1.2"
-  }
+    "electron": "^2.0.1",
+    "electron-packager": "^12.0.2"
+  },
+  "dependencies": {}
 }

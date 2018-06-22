@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PersonalComponent } from './components/personal/personal.component';
 import { AdminComponent } from './admin.component';
 import { UsersComponent } from './components/users/users.component';
+import { KameradenComponent } from './components/kameraden/kameraden.component';
 
 const routes: Routes = [
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
       },
       {
         path: 'editPersonal',
-        component: PersonalComponent
+        component: KameradenComponent
       },
       {
         path: 'editUser',

@@ -1,0 +1,57 @@
+<div fxLayout fxLayoutAlign="center" fxLayoutGap="10px" style="margin-top: 10px" >
+  <!--*ngIf="!(isLoading$ | async); else spinner"-->
+  <div fxFlex></div>
+  <div fxFlex="60" class="mat-elevation-z8">
+    <mat-form-field style="width: 66%">
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        matInput
+        id="suche"
+        placeholder="Suchen..."
+        (keyup)='updateFilter($event)'
+      >
+      <mat-hint >...nach Nachname</mat-hint>
+    </mat-form-field>
+    <button mat-fab color="primary" matTooltip="Neuen Kameraden anlegen" matTooltipPosition="above" style="float: right" (click)="onOpenAddDialog()">
+      <mat-icon>person_add</mat-icon>
+    </button>
+  <!--<mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">-->
+
+    <!--&lt;!&ndash; Id Column &ndash;&gt;-->
+    <!--<ng-container matColumnDef="lastName">-->
+      <!--<mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</mat-header-cell>-->
+      <!--<mat-cell *matCellDef="let row" (click)="onSelect(row)">{{row.lastName}}</mat-cell>-->
+    <!--</ng-container>-->
+
+    <!--&lt;!&ndash; Name Column &ndash;&gt;-->
+    <!--<ng-container matColumnDef="firstName">-->
+      <!--<mat-header-cell *matHeaderCellDef >Vorname</mat-header-cell>-->
+      <!--<mat-cell *matCellDef="let row" (click)="onSelect(row)">{{row.firstName}}</mat-cell>-->
+    <!--</ng-container>-->
+    <!--&lt;!&ndash; Name Column &ndash;&gt;-->
+    <!--<ng-container matColumnDef="rfid">-->
+      <!--<mat-header-cell *matHeaderCellDef >RFID</mat-header-cell>-->
+      <!--<mat-cell *matCellDef="let row" (click)="onSelect(row)">{{row.rfid}}</mat-cell>-->
+    <!--</ng-container>-->
+
+    <!--<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
+    <!--<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>-->
+  <!--</mat-table>-->
+
+  <!--<mat-paginator #paginator-->
+    <!--[length]="dataSource.data.length"-->
+    <!--[pageIndex]="0"-->
+    <!--[pageSize]="10"-->
+    <!--[pageSizeOptions]="[5, 10, 25, 50, 100, 250]">-->
+  <!--</mat-paginator>-->
+</div>
+  <div fxFlex></div>
+
+</div>
+
+
+
+<ng-template #spinner>
+  <div class="spinner spinner-1 float-center"></div>
+</ng-template>
+
