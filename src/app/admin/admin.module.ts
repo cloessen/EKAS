@@ -12,7 +12,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { NewUserFormComponent } from './components/new-user-form/new-user-form.component';
 import { KameradenComponent } from './components/kameraden/kameraden.component';
 import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
-import { Store } from '@ngrx/store';
+import { KameradenService } from '../shared/kameraden.service';
 
 
 @NgModule({
@@ -36,7 +36,7 @@ import { Store } from '@ngrx/store';
     NewUserFormComponent,
     KameradenComponent
   ],
-  providers: [],
+  providers: [KameradenService],
   entryComponents: [
     KameradFormComponent,
     NewKameradFormComponent

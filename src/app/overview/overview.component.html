@@ -1,4 +1,4 @@
-<div *ngIf="finishedLoading && overview.sum >0">
+<div *ngIf="finishedLoading && overview">
   <mat-toolbar style=" justify-content: space-between;">
     <span class="fa-4x">
       <i class="fas fa-users"></i>: {{overview.sum}}
@@ -33,7 +33,7 @@
   <!-- FÜHRUNGSKRÄFTE GWF / OWF / ZF-->
   <div class="grid-container">
     <div class="grid-items">
-      <div class="grid-item" *ngFor="let kamerad of gwf">
+      <div class="grid-item" *ngFor="let kamerad of gwf | async">
         <header class="grid-item-name">
           <p
             [ngStyle]="{'background-color' : kamerad.funktionen.gwf ? 'yellow' : 'white'}">
@@ -51,7 +51,7 @@
           <i class="fa fa-medkit fa-2x" [ngStyle]="{'color' : kamerad.funktionen.RS ? 'green' : 'grey'}"></i>
         </section>
       </div>
-      <div class="grid-item" *ngFor="let kamerad of owf">
+      <div class="grid-item" *ngFor="let kamerad of owf | async">
         <header class="grid-item-name">
           <p
             [ngStyle]="{'background-color' : kamerad.funktionen.owf ? 'yellow' : 'white'}">
@@ -69,7 +69,7 @@
           <i class="fa fa-medkit fa-2x" [ngStyle]="{'color' : kamerad.funktionen.RS ? 'green' : 'grey'}"></i>
         </section>
       </div>
-      <div class="grid-item" *ngFor="let kamerad of zf">
+      <div class="grid-item" *ngFor="let kamerad of zf | async">
         <header class="grid-item-name">
           <p
             [ngStyle]="{'background-color' : kamerad.funktionen.ZF ? 'red' : 'white'}">
@@ -91,12 +91,13 @@
 
   </div>
   <!--/ FÜHRUNGSKRÄFTE GWF / OWF / ZF -->
-  <hr *ngIf="(gwf.length > 0 || owf.length > 0 || zf.length > 0)">
+  <!--<hr *ngIf="(gwf.length > 0 || owf.length > 0 || zf.length > 0)">-->
+  <hr>
   <!--ALLE KAMERADEN AUSSER GWF / OWF / ZF-->
 
   <div class="grid-container">
     <div class="grid-items">
-      <div class="grid-item" *ngFor="let kamerad of kameraden">
+      <div class="grid-item" *ngFor="let kamerad of kameraden | async">
         <header class="grid-item-name">
           <p
             [ngStyle]="{'background-color' : kamerad.funktionen.GF ? 'blue' : '#e2e2e2', 'color' : kamerad.funktionen.GF ? 'white' : 'black'}">
@@ -146,6 +147,19 @@
 <div *ngIf="finishedLoading" style="position: absolute; bottom: 100px">
   <h3>Alle Kameraden</h3>
   <p> wirklich nur zum testen.... Es kann ein paar Sekunden dauern bis sich die Anzeige Ändert, gerade beim ersten klick</p>
-  <button matTooltip="Es kann ein paar Sekunden dauern bis sich die Anzeige Ändert!" matTooltipPosition="above" mat-raised-button color="primary" style="margin: 3px;" *ngFor="let person of komplettesPersonal" (click)="toggleAnwesenheit(person.rfid)">{{person.lastName}}, {{person.firstName}}</button>
-  <button matTooltip="Hiermit wird für testzwecke eine falscher request gesendet" matTooltipPosition="above" mat-raised-button color="error" style="margin: 3px;" (click)="toggleAnwesenheit(wrongID)">Error Button</button>
+  <button
+    matTooltip="Es kann ein paar Sekunden dauern bis sich die Anzeige Ändert!"
+    matTooltipPosition="above"
+    mat-raised-button
+    color="primary"
+    style="margin: 3px;"
+    *ngFor="let person of komplettesPersonal | async"
+    (click)="toggleAnwesenheit(person.rfid)">{{person.lastName}}, {{person.firstName}}</button>
+  <button
+    matTooltip="Hiermit wird für testzwecke eine falscher request gesendet"
+    matTooltipPosition="above"
+    mat-raised-button
+    color="error"
+    style="margin: 3px;"
+    (click)="toggleAnwesenheit('irgendwas')">Error Button</button>
 </div>

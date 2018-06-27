@@ -1,15 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-//@import '/styles/materialize/sass/materialize.scss';
+
 //@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 //@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 //@import "~@angular/material/prebuilt-themes/purple-green.css";
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
 
-@import '~@swimlane/ngx-datatable/release/index.css';
-// @import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
-@import '~@swimlane/ngx-datatable/release/themes/material.css';
-@import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
 *{
   box-sizing: border-box;

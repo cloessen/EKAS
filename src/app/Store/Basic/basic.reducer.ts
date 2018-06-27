@@ -1,4 +1,4 @@
-import { BasicActions, SET_CURRENT_FF } from './basic.actions';
+import { BasicActions, BasicActionTypes } from './basic.actions';
 
 export interface State {
   currentFF: string;
@@ -10,7 +10,7 @@ const initialState: State = {
 
 export function basicReducer(state = initialState, action: BasicActions) {
   switch (action.type) {
-    case SET_CURRENT_FF :
+    case BasicActionTypes.SET_CURRENT_FF:
       return {
         ...state,
         currentFF : action.payload

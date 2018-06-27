@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from './interfaces';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
@@ -17,13 +18,19 @@ export class UserService {
     this.afAuth.authState.subscribe(user => user ? this.uid = user.uid : this.uid = null );
   }
 
+  checkUserForFF(user, currentFF){
+
+  }
+
+
+
 
   getCurrentFF(): Observable<string> {
     this.usersCollection = this.afs.collection<User>('Users', (ref) => {
       return ref.where('uid', '==', this.uid );
     });
-    return this.usersCollection.valueChanges().map(data => {
+    return this.usersCollection.valueChanges().pipe(map(data => {
       return data[0].feuerwehr;
-    });
+    }));
   }
 }

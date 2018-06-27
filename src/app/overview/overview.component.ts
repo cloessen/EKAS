@@ -3,9 +3,9 @@ import { Kamerad, Overview } from '../shared/interfaces';
 import { FirestoreService } from '../shared/firestore.service';
 import { Subscription } from 'rxjs/Subscription';
 import { HttpClient } from '@angular/common/http';
-import * as fromRoot from '../app.reducer';
+import * as fromRoot from '../Store/app.reducer';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/index';
+import { Observable } from 'rxjs';
 
 
 
@@ -19,68 +19,40 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public kameradenSubscription: Subscription;
   public finishedLoading = false;
   public overview: Overview;
-  public kameraden: Kamerad[];
+  public overviewSubscription: Subscription;
+  // public kameraden: Kamerad[];
+  public kameraden: Observable<Kamerad[]>;
   // public kameraden: Observable<Kamerad[]>;
-  public zf: Kamerad[];
-  public owf: Kamerad[];
-  public gwf: Kamerad[];
+  public zf: Observable<Kamerad[]>;
+  public owf: Observable<Kamerad[]>;
+  public gwf: Observable<Kamerad[]>;
   public personalSubscription: Subscription;
-  public komplettesPersonal: Kamerad[];
+  public komplettesPersonal: Observable<Kamerad[]>;
 
 
   constructor(
     private afs: FirestoreService,
     private http: HttpClient,
-    private _store: Store<fromRoot.State> ) { }
+    private _store: Store<fromRoot.State> ) {
 
-
-
-  calculateFunktionen(data: Kamerad[]) {
-    this.gwf = [];
-    this.owf = [];
-    this.zf = [];
-    this.overview = new Overview();
-    this.overview.sum = data.length;
-    data.forEach((kamerad: Kamerad) => {
-      const obj = kamerad.funktionen;
-      for (const funktion in obj) {
-        if (obj[funktion]) {
-          this.overview[funktion]++;
-        }
-      }
-      if (kamerad.funktionen.owf) {
-        this.owf.push(kamerad);
-      }
-      if (kamerad.funktionen.gwf) {
-        this.gwf.push(kamerad);
-      }
-      if (kamerad.funktionen.ZF) {
-        this.zf.push(kamerad);
-      }
-    });
-    // remove ZF & OWF & GWF from kameraden[]
-    this.zf.forEach((kamerad) => data.splice(this.kameraden.indexOf(kamerad), 1));
-    this.owf.forEach((kamerad) => data.splice(this.kameraden.indexOf(kamerad), 1));
-    this.gwf.forEach((kamerad) => data.splice(this.kameraden.indexOf(kamerad), 1));
-    return data;
   }
   ngOnInit() {
-    this.kameradenSubscription = this._store.select(fromRoot.getAnwesendeKameraden).subscribe((kameraden: Kamerad[]) => {
-        // this.kameraden = kameraden;
-        // this.calculateFunktionen(kameraden);
-      this.kameraden = this.calculateFunktionen(kameraden);
-      console.log('kameraden ... ', this.kameraden);
+    this.komplettesPersonal = this._store.select(fromRoot.getAlleKameraden);
+    this.kameraden = this._store.select(fromRoot.getAnwesendeKameraden);
+    this.gwf = this._store.select(fromRoot.getAnwesendeGWF);
+    this.owf = this._store.select(fromRoot.getAnwesendeOWF);
+    this.zf = this._store.select(fromRoot.getAnwesendeZF);
+    this.overviewSubscription = this._store.select(fromRoot.getOverview)
+      .subscribe((overview: Overview) => {
+        this.overview = overview;
         this.finishedLoading = true;
-    });
-    // this.kameraden = this._store.select(fromRoot.getAnwesendeKameraden);
-    this.personalSubscription = this._store.select(fromRoot.getAlleKameraden).subscribe((kameraden: Kamerad[]) => {
-      this.komplettesPersonal = kameraden;
-    });
+      });
 
   }
   ngOnDestroy() {
-    this.kameradenSubscription.unsubscribe();
-    this.personalSubscription.unsubscribe();
+    // this.kameradenSubscription.unsubscribe();
+    // this.personalSubscription.unsubscribe();
+    this.overviewSubscription.unsubscribe();
 
   }
 

@@ -17,7 +17,7 @@
           <mat-error *ngIf="inputFirstName.value == ''">Vorname darf nicht leer sein!</mat-error>
         </mat-form-field>
         <mat-form-field >
-          <input disabled matInput id="inputRfid" [(ngModel)]="kamerad.rfid" name="rfidRef" class="full-width" tabindex="-1">
+          <input disabled matInput id="inputRfid" value="{{kamerad.rfid}}" name="rfidRef" class="full-width" tabindex="-1">
           <!--<span matSuffix>-->
             <i matSuffix class="fas fa-times-circle" style="color: red"></i>
           <!--</span>-->
@@ -28,6 +28,7 @@
           </mat-hint>
         </mat-form-field>
         <input type="hidden" [ngModel]="kamerad.rfid" name="rfid">
+        <input type="hidden" [ngModel]="kamerad.anwesend" name="anwesend">
       </div>
       <!-- / Ausgabe Name, Vorname und RFID -->
       <!-- Ausgabe der Funktionen -->

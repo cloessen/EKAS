@@ -12,15 +12,16 @@ import { SharedModule } from './shared/shared.module';
 import { AuthService } from './shared/auth.service';
 import { FirestoreService } from './shared/firestore.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UIService } from './shared/ui.service';
 import { AuthGuard } from './shared/auth-guard.service';
 import { AdminGuard } from './shared/admin-guard.service';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { reducers } from './app.reducer';
+import { reducers } from './Store/app.reducer';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+// import { KameradenService } from './shared/kameraden.service';
 
 
 @NgModule({
@@ -37,12 +38,12 @@ import { LayoutModule } from './layout/layout.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    NgxDatatableModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
-    })
+    }),
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [FirestoreService, AuthService, AdminGuard, AuthGuard, UIService],
   bootstrap: [AppComponent]

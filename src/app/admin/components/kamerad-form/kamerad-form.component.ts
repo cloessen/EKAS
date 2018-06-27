@@ -21,17 +21,18 @@ export class KameradFormComponent implements OnInit {
 
   constructor(
     private UI: UIService,
-    private firebase: KameradenService,
+    private _kameraden: KameradenService,
     @Inject(MAT_DIALOG_DATA) public data: Kamerad,
     public dialogRef: MatDialogRef<KameradFormComponent>) {
   }
 
   ngOnInit() {
     this.kamerad = this.data;
+    console.log(this.kamerad);
   }
   onDelete(kamerad: Kamerad) {
     if (this.check1 && this.check2) {
-      this.firebase.deleteKamerad(kamerad)
+      this._kameraden.deleteKamerad(kamerad.id)
         .catch((error) => this.UI.showSnackBar(error.message, 3000));
       this.dialogRef.close();
     } else {
@@ -42,6 +43,8 @@ export class KameradFormComponent implements OnInit {
   onSubmit(form) {
     this.dialogRef.close();
     const updatedKamerad: Kamerad = form.value;
+    delete updatedKamerad.check1;
+    delete updatedKamerad.check2;
     for (const funktion in updatedKamerad.funktionen) {
       if (!updatedKamerad.funktionen[funktion]) {
         updatedKamerad.funktionen[funktion] = false;
@@ -59,7 +62,7 @@ export class KameradFormComponent implements OnInit {
     if (!updatedKamerad.funktionen.gwf) {
       updatedKamerad.funktionen.gwf = false;
     }
-    this.firebase.updateKamerad(updatedKamerad)
+    this._kameraden.updateKamerad(updatedKamerad)
       .then(() => this.UI.showSnackBar('Update erfolgreich gespeichert', 2500))
       .catch((error) => this.UI.showSnackBar(error.message, 3000));
   }

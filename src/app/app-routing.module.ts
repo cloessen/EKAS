@@ -10,7 +10,7 @@ import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   {
-    path: ':ff', component: LayoutComponent,
+    path: '', component: LayoutComponent,
     children: [
       {
       path: '', component: OverviewComponent
@@ -30,6 +30,28 @@ const routes: Routes = [
   },
 
 ];
+// const routes: Routes = [
+//   {
+//     path: ':ff', component: LayoutComponent,
+//     children: [
+//       {
+//       path: '', component: OverviewComponent
+//       },
+//       {
+//         path: 'login', component: LoginComponent
+//       },
+//       {
+//         path: 'admin',
+//         loadChildren: './admin/admin.module#AdminModule',
+//         // TODO: rewrite for production!!!!!!!!!!
+//         // canLoad: [AdminGuard],
+//       }]
+//   },
+//   {
+//     path: '**', redirectTo: ''
+//   },
+//
+// ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

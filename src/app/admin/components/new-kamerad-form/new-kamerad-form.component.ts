@@ -62,7 +62,7 @@ export class NewKameradFormComponent implements OnInit {
 
 
   constructor(private _UI: UIService,
-              private firebase: KameradenService,
+              private _kameraden: KameradenService,
               @Inject(MAT_DIALOG_DATA) public data: Kamerad,
               public dialogRef: MatDialogRef<NewKameradFormComponent>) { }
 
@@ -91,7 +91,7 @@ export class NewKameradFormComponent implements OnInit {
       if (!newKamerad.funktionen.gwf) {
         newKamerad.funktionen.gwf = false;
       }
-    this.firebase.saveNewKamerad(newKamerad)
+    this._kameraden.saveNewKamerad(newKamerad)
       .then(() => {
         this._UI.isLoading$.next(false);
         this._UI.showSnackBar('Neuer Kamerad erfolgreich gespeichert', 2500);

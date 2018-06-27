@@ -25,6 +25,12 @@ export interface User {
   uid?: string;
   email: string;
   isAdmin: boolean;
+  feuerwehr: string;
+}
+
+export interface UIError {
+  code: string;
+  message: string;
 }
 
 export class Overview {

@@ -15,35 +15,35 @@
     <button mat-fab color="primary" matTooltip="Neuen Kameraden anlegen" matTooltipPosition="above" style="float: right" (click)="onOpenAddDialog()">
       <mat-icon>person_add</mat-icon>
     </button>
-  <!--<mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">-->
+  <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
 
-    <!--&lt;!&ndash; Id Column &ndash;&gt;-->
-    <!--<ng-container matColumnDef="lastName">-->
-      <!--<mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</mat-header-cell>-->
-      <!--<mat-cell *matCellDef="let row" (click)="onSelect(row)">{{row.lastName}}</mat-cell>-->
-    <!--</ng-container>-->
+    <!-- Id Column -->
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</mat-header-cell>
+      <mat-cell *matCellDef="let row" (click)="onSelect(row)">{{row.lastName}}</mat-cell>
+    </ng-container>
 
-    <!--&lt;!&ndash; Name Column &ndash;&gt;-->
-    <!--<ng-container matColumnDef="firstName">-->
-      <!--<mat-header-cell *matHeaderCellDef >Vorname</mat-header-cell>-->
-      <!--<mat-cell *matCellDef="let row" (click)="onSelect(row)">{{row.firstName}}</mat-cell>-->
-    <!--</ng-container>-->
-    <!--&lt;!&ndash; Name Column &ndash;&gt;-->
-    <!--<ng-container matColumnDef="rfid">-->
-      <!--<mat-header-cell *matHeaderCellDef >RFID</mat-header-cell>-->
-      <!--<mat-cell *matCellDef="let row" (click)="onSelect(row)">{{row.rfid}}</mat-cell>-->
-    <!--</ng-container>-->
+    <!-- Name Column -->
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef >Vorname</mat-header-cell>
+      <mat-cell *matCellDef="let row" (click)="onSelect(row)">{{row.firstName}}</mat-cell>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="rfid">
+      <mat-header-cell *matHeaderCellDef >RFID</mat-header-cell>
+      <mat-cell *matCellDef="let row" (click)="onSelect(row)">{{row.rfid}}</mat-cell>
+    </ng-container>
 
-    <!--<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
-    <!--<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>-->
-  <!--</mat-table>-->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 
-  <!--<mat-paginator #paginator-->
-    <!--[length]="dataSource.data.length"-->
-    <!--[pageIndex]="0"-->
-    <!--[pageSize]="10"-->
-    <!--[pageSizeOptions]="[5, 10, 25, 50, 100, 250]">-->
-  <!--</mat-paginator>-->
+  <mat-paginator #paginator
+    [length]="dataSource.data.length"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 50, 100, 250]">
+  </mat-paginator>
 </div>
   <div fxFlex></div>
 

@@ -2,23 +2,44 @@
 <mat-card class="mat-elevation-z24 float-center">
   <mat-card-header>
     <mat-card-title>
-      Anmelden
+      Einsatz Kräfte Anzeige System // ekas.app
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form #form="ngForm" (ngSubmit)="onSubmitLogin(form.value)">
-      <mat-form-field>
-        <input matInput type="email" ngModel name="email" placeholder="Email">
+      <mat-form-field style="width: 80%">
+        <input
+          required
+          matInput
+          type="text"
+          ngModel
+          name="currentFF"
+          placeholder="Feuerwehr">
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="password" ngModel name="password" placeholder="Passwort">
+        <input
+          required
+          matInput
+          type="email"
+          ngModel
+          name="email"
+          placeholder="Email">
       </mat-form-field>
-      <button mat-raised-button type="submit" color="primary">
+      <mat-form-field>
+        <input
+          required
+          matInput
+          type="password"
+          ngModel
+          name="password"
+          placeholder="Passwort">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary" aria-label="login" [disabled]="form.invalid ? true : false">
         <mat-icon>power_settings_new</mat-icon>
       </button>
     </form>
-    <div *ngIf="hasError">
-      ERROR: {{hasError.message}}
+    <div>
+      {{ (hasError | async)?.message }}
     </div>
   </mat-card-content>
 </mat-card>
